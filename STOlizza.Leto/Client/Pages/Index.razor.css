@@ -1,0 +1,19 @@
+﻿.backgroundUrl {
+    background-image: url(BackgroundZavitushkiSvg.svg);
+    position: absolute;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@media only screen and (max-width: 480px) {
+    .backgroundUrl {
+        background-image: url(BackgroundZavitushkiMobileSvg.svg);
+        position: absolute;
+        width: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
