@@ -1,5 +1,6 @@
 ﻿@page "/"
 @inject NavigationManager Nigger
+@inject IQuestionnaireService QService
 <PageTitle>STOлица.Лето</PageTitle>
 
 
@@ -176,6 +177,12 @@
 
 
 @code {
+    protected override void OnInitialized()
+    {
+        LQDTO = QService.Get();
+    }
+
+    public QuestionnaireDTO LQDTO;
 
     public class Smena
     {
@@ -220,11 +227,14 @@
     public List<string> CarouselMobilePhotosPaths = new()
     {
         "carouselMobile1.png","carouselMobile2.png","carouselMobile3.png","carouselMobile4.png","carouselMobile5.png",
-    };
+    }; 
 
-    public string MobileBackgroundUrl = "BackgroundZavitushkiMobileSvg.svg";
-
-    public string DesctopBackgroundUrl = "BackgroundZavitushkiSvg.svg";
+    public void BeginQuestionnaire(int smemaNumber)
+    {
+        LQDTO.Smena = smemaNumber;
+        QService.Set(LQDTO);
+        Nigger.NavigateTo("/questionnaire_part_1");
+    }
 
     public void GoToSmenas()
     {

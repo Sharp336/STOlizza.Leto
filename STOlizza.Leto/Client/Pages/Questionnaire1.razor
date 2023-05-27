@@ -1,6 +1,7 @@
 ﻿@page "/questionnaire_part_1"
 @inject NavigationManager Nigger
 @inject IDialogService Dis
+@inject IQuestionnaireService QuestionnaireService
 <PageTitle>STOлица.Лето</PageTitle>
 
 
@@ -64,7 +65,7 @@
                         </MudItem>
                         
                         <MudItem xs="12" lg="6">
-                            <MudText Style="text-align: start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828;">
+                            <MudText @bind-Value="LQDTO.FirstName" For="@(() => LQDTO.FirstName)" Style="text-align: start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828;">
                                 Фамилия*
                             </MudText>
 
@@ -201,6 +202,13 @@
 
 
 @code {
+    protected override void OnInitialized()
+    {
+        LQDTO = QuestionnaireService.Get();
+    }
+
+    public QuestionnaireDTO LQDTO;
+
     private void OpenErrorDialog(bool ismobile)
     {
         var parameters = new DialogParameters();

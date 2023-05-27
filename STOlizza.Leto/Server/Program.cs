@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.ResponseCompression;
+using STOlizza.Leto.Client.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+
+builder.Services.AddTransient<IQuestionnaireService, QuestionnaireService>();
+builder.Services.AddScoped<IQuestionnaireService, QuestionnaireService>();
 
 var app = builder.Build();
 
