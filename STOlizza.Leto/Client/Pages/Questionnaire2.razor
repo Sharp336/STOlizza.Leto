@@ -1,0 +1,136 @@
+﻿@page "/questionnaire_part_2"
+@inject NavigationManager Nigger
+@inject IDialogService Dis
+<PageTitle>STOлица.Лето</PageTitle>
+
+
+<div class="backgroundPhoto justify-content-center align-content-center align-items-center text-center">
+
+    <div class="d-flex flex-row justify-content-center align-content-center align-items-center text-center" style="position:relative; top: 0; width:100%; padding: 2vh 2vw">
+        <MudImage Src="TopMainLogo.svg" Style="min-height:35px;  height:6vh;" />
+        <MudSpacer />
+        <MudButton>
+            <MudImage Src="ArrowLeft.svg" Style="min-height:25px; height:3vh;" />
+            <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+                <MudText Style="margin-left: 1vw; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 20px; line-height: 115%; text-align: center; color: white;">Назад</MudText>
+            </MudHidden>
+        </MudButton>
+    </div>
+
+    <div class="BodyDiv d-flex flex-row justify-content-center align-content-center align-items-center text-center">
+
+        <div class="align-self-start defaultHidden inputform" style="background-color: #FD7D32; border-radius: 30px 30px 0 0">
+            <MudHidden Breakpoint="Breakpoint.MdAndUp">
+                <MudText Style="margin: 2vmax 2vmax; text-align:start; font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px)/(1280 - 480) * (27 - 25) + 25px); line-height: 130%; color: white;">
+                    Заявка на участие в<br />палаточном лагере<br />«STOлица.Лето»
+                </MudText>
+            </MudHidden>
+
+            <div class="cornersForResize" style="visibility:visible; padding: 1.5vw; background-color: #FCF0FF">
+
+                <MudForm Style="border-radius: 30px; overflow:hidden; background-color: white;">
+
+                    <MudPaper Class="d-flex flex-row align-items-center " Style="border-radius: 30px; padding: 2vmax; background-color: #FD7D32; position:relative; top: 0; width:100%;">
+
+                        <MudImage Src="Smile.svg" Style="min-height:35px; height:3vmax; margin-right: 2vmax" />
+
+                        <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (30 - 20) + 20px); line-height: 115%; text-align: center; color: #FFFFFF;">
+
+                            О себе
+
+                        </MudText>
+
+                    </MudPaper>
+
+                    <MudGrid Style="padding: 2vmax">
+
+                        <MudItem xs="12">
+                            <MudText Style="text-align: start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828;">
+                                Имеется ли у тебя аллергия?
+                            </MudText>
+
+                            <MudTextField Lines="6" T="string" Placeholder="Если да, то укажи, на что именно у тебя аллергия"></MudTextField>
+                        </MudItem>
+
+                        <MudItem xs="12">
+                            <MudText Style="text-align: start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828;">
+                                Имеются ли у тебя хронические заболевания или иные медицинские противопоказания?
+                            </MudText>
+
+                            <MudTextField Lines="6" T="string" Placeholder="Если да, то перечисли"></MudTextField>
+                        </MudItem>
+
+                        <MudItem xs="12">
+                            <MudText Style="text-align: start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828;">
+                                Как ты узнал о палаточном лагере?
+                            </MudText>
+
+                            <MudSelect T="string" Placeholder="Выбери из списка" AnchorOrigin="Origin.BottomCenter">
+                                <MudSelectItem Value="@("Рассказали друзья")" />
+                                <MudSelectItem Value="@("Пригласили в университете")" />
+                                <MudSelectItem Value="@("Рассказали участники спортивной игры «Зарницы»")" />
+                                <MudSelectItem Value="@("Узнал в интернете")" />
+                            </MudSelect>
+                        </MudItem>
+
+                        <MudItem xs="12">
+                            <MudText Style="text-align: start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828;">
+                                Какие навыки и знания ты бы хотел получить, посетив палаточный лагерь?*
+                            </MudText>
+
+                            <MudTextField Lines="6" T="string" Placeholder="Добавь текст"></MudTextField>
+                        </MudItem>
+
+                        <MudItem xs="12">
+                            <MudText Style="text-align: start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828;">
+                                Как ты собираешься применять полученный опыт?*
+                            </MudText>
+
+                            <MudTextField Lines="6" T="string" Placeholder="Добавь текст"></MudTextField>
+                        </MudItem>
+
+                    </MudGrid>
+
+                </MudForm>
+
+                <MudHidden Breakpoint="Breakpoint.MdAndUp">
+                    <MudButton @onclick="() => {Submit(true);}" Style="padding:2vmax; width:100%; margin-top: 2vh; background-color: #FD7D32; border-radius: 30px">
+                        <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 20px; line-height: 115%; text-align: center; color: #FFFFFF;">
+                            Далее
+                        </MudText>
+                    </MudButton>
+                </MudHidden>
+
+            </div>
+
+        </div>
+
+        <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+            <MudPaper Class="align-self-start" Style="margin-left: 1vw; background-color: #FD7D32; border-radius: 30px">
+                <MudText Style="white-space:nowrap; margin: 2.5vh 1vw; text-align:start; font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: 30px; line-height: 130%; color: white;">
+                    Заявка на участие в<br />палаточном лагере<br />«STOлица.Лето»
+                </MudText>
+                <MudPaper Style="background-color: white; border-radius: 30px; padding: 1vw">
+                    <MudText Style="text-align:start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 20px; line-height: 115%; color: #282828;">
+                        После заполнения полей<br />переходи к следующему этапу!
+                    </MudText>
+                    <MudButton @onclick="() => {Submit(false);}" Style="padding:1vh; width:100%; margin-top: 2vh; background-color: #FD7D32; border-radius: 30px">
+                        <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 20px; line-height: 115%; text-align: center; color: #FFFFFF;">
+                            Далее
+                        </MudText>
+                    </MudButton>
+                </MudPaper>
+            </MudPaper>
+        </MudHidden>
+    </div>
+
+</div>
+
+
+
+@code {
+    private async Task Submit(bool isMobile)
+    {
+        Nigger.NavigateTo("/questionnaire_part_3");
+    }
+}

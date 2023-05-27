@@ -1,4 +1,4 @@
-﻿@page "/A"
+﻿@page "/"
 @inject NavigationManager Nigger
 <PageTitle>STOлица.Лето</PageTitle>
 
@@ -56,9 +56,9 @@
 
     </div>
 
-    <MudButton Class="py-5 d-flex align-content-center align-items-center justify-content-center" Style="margin: auto; background-color: #FFDE0D; width: 82vw; border-radius: 40px;">
+    <MudButton @onclick="GoToSmenas" Class="py-5 d-flex align-content-center align-items-center justify-content-center" Style="margin: auto; background-color: #FFDE0D; width: 82vw; border-radius: 40px;">
         <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px)/(1280 - 480) * (34 - 16) + 16px); line-height: 115%; text-align: center; letter-spacing: 3px; text-transform: uppercase;">ПОДАТЬ ЗАЯВКУ</MudText>
-    </MudButton>
+    </MudButton> 
 
     <div class="d-flex flex-column" style="width:90vw; margin: 25vh auto 0 auto;">
         <div class="d-flex flex-column flex-lg-row" style="margin-bottom: 4vh ">
@@ -124,7 +124,7 @@
     </div>
 
     <div class="d-flex flex-column" style="width:90vw; margin: 25vh auto 45vh auto;">
-        <div class="d-flex flex-row" style="margin-bottom: 6vh">
+        <div id="smenas" class="d-flex flex-row" style="margin-bottom: 6vh">
             <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 800; font-size: calc( (100vw - 480px)/(1280 - 480) * (64 - 45) + 45px); line-height: 115%; letter-spacing: 3px; text-transform: uppercase;  color: #282828;">СМЕНЫ</MudText>
         </div>
 
@@ -170,7 +170,7 @@
     </div>
 
     
-
+    <AnchorNavigation />
 </div>
 
 
@@ -225,6 +225,11 @@
     public string MobileBackgroundUrl = "BackgroundZavitushkiMobileSvg.svg";
 
     public string DesctopBackgroundUrl = "BackgroundZavitushkiSvg.svg";
+
+    public void GoToSmenas()
+    {
+        Nigger.NavigateTo("#smenas");
+    }
 
     public void GoToFAQ()
     {

@@ -1,5 +1,4 @@
-﻿@*@page "/questionnaire_part_1"*@
-@page "/"
+﻿@page "/questionnaire_part_1"
 @inject NavigationManager Nigger
 @inject IDialogService Dis
 <PageTitle>STOлица.Лето</PageTitle>
@@ -20,7 +19,7 @@
 
     <div class="BodyDiv d-flex flex-row justify-content-center align-content-center align-items-center text-center">
         
-        <div class="defaultHidden inputform" style="background-color: #701487; border-radius: 30px 30px 0 0">
+        <div class="align-self-start defaultHidden inputform" style="background-color: #701487; border-radius: 30px 30px 0 0">
             <MudHidden Breakpoint="Breakpoint.MdAndUp">
                 <MudText Style="margin: 2vmax 2vmax; text-align:start; font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px)/(1280 - 480) * (27 - 25) + 25px); line-height: 130%; color: white;">
                     Заявка на участие в<br />палаточном лагере<br />«STOлица.Лето»
@@ -33,9 +32,9 @@
                     
                     <MudPaper Class="d-flex flex-row align-items-center " Style="border-radius: 30px; padding: 2vmax; background-color: #701487; position:relative; top: 0; width:100%;">
                         
-                        <MudImage Src="CheckedCircle.svg" Style="min-height:35px; height:3vh; margin-right: 2vmax"/>
+                        <MudImage Src="CheckedCircle.svg" Style="min-height:35px; height:3vmax; margin-right: 2vmax"/>
                         
-                        <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 20px; line-height: 115%; text-align: center; color: #FFFFFF;">
+                        <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (30 - 20) + 20px); line-height: 115%; text-align: center; color: #FFFFFF;">
                             
                             Личные данные
                             
@@ -167,7 +166,7 @@
                 </MudForm>
                 
                 <MudHidden Breakpoint="Breakpoint.MdAndUp">
-                    <MudButton Style="padding:2vmax; width:100%; margin-top: 2vh; background-color: #701487; border-radius: 30px">
+                    <MudButton @onclick="() => {Submit(true);}" Style="padding:2vmax; width:100%; margin-top: 2vh; background-color: #701487; border-radius: 30px">
                         <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 20px; line-height: 115%; text-align: center; color: #FFFFFF;">
                             Далее
                         </MudText>
@@ -187,7 +186,7 @@
                     <MudText Style="text-align:start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 20px; line-height: 115%; color: #282828;">
                         После заполнения полей<br />переходи к следующему этапу!
                     </MudText>
-                    <MudButton Style="padding:1vh; width:100%; margin-top: 2vh; background-color: #701487; border-radius: 30px">
+                    <MudButton @onclick="() => {Submit(false);}" Style="padding:1vh; width:100%; margin-top: 2vh; background-color: #701487; border-radius: 30px">
                         <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 20px; line-height: 115%; text-align: center; color: #FFFFFF;">
                             Далее
                         </MudText>
@@ -202,5 +201,18 @@
 
 
 @code {
+    private void OpenErrorDialog(bool ismobile)
+    {
+        var parameters = new DialogParameters();
+        parameters.Add("DialogColor", "#701487");
+        parameters.Add("ErrorSize", "25");
+        parameters.Add("isSuccess", false);
+        parameters.Add("isMobile", ismobile);
+        Dis.Show<Dialog>("", parameters);
+    }
 
+    private async Task Submit(bool isMobile)
+    {
+        Nigger.NavigateTo("/questionnaire_part_2");
+    }
 }

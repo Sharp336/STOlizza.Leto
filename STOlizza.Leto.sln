@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33712.159
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STOlizza.Leto.Server", "STOlizza.Leto\Server\STOlizza.Leto.Server.csproj", "{539325B1-0755-45E2-9321-D9B7CA196507}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "STOlizza.Leto.Server", "STOlizza.Leto\Server\STOlizza.Leto.Server.csproj", "{539325B1-0755-45E2-9321-D9B7CA196507}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STOlizza.Leto.Client", "STOlizza.Leto\Client\STOlizza.Leto.Client.csproj", "{358FD5FB-72A8-473A-836D-0E023B1910C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "STOlizza.Leto.Client", "STOlizza.Leto\Client\STOlizza.Leto.Client.csproj", "{358FD5FB-72A8-473A-836D-0E023B1910C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STOlizza.Leto.Shared", "STOlizza.Leto\Shared\STOlizza.Leto.Shared.csproj", "{92B0DCDB-E91C-48B8-B674-596158A31E81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "STOlizza.Leto.Shared", "STOlizza.Leto\Shared\STOlizza.Leto.Shared.csproj", "{92B0DCDB-E91C-48B8-B674-596158A31E81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

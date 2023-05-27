@@ -1,0 +1,75 @@
+﻿<MudDialog Style=@($"background-color: {DialogColor}; border-radius: 30px; overflow:hidden")>
+    <DialogContent>
+
+        @if (!isSuccess)
+        {
+            <MudButton @onclick="Close" Style=@($"right:{(isMobile ? "1.5" : "1")}vmax; top:{(isMobile ? "1.5" : "1")}vmax ; position:absolute; min-width:30px; min-height:30px; height:1vmax; width: 1vmax; background-position:center; background-repeat: no-repeat; background-size:cover; background-image: url(Cross.svg)") />
+        }
+
+        <MudStack Style="height:100%; width:100%;">
+            <MudContainer Class="d-flex flex-column justify-content-center align-content-center align-items-center text-center" Style=@($"margin-bottom:{(isMobile ? "20%" : "3vmax")}; padding:{(isMobile ? "2" : "3")}vmax; ")>
+                
+                @if (!isSuccess)
+                {
+                    <MudImage Src="!.svg" Style=@($"margin-bottom: 1vmax ; height: calc( (100vw - 480px)/(1280 - 480) * (80 - {(isMobile ? "60" : "40")}) + {(isMobile ? "60" : "40")}px); width:auto") />
+                    <MudText Style="white-space:nowrap; font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px)/(1280 - 480) * (25 - 18) + 18px); line-height: 130%; text-align: center; color: #FFFFFF;">
+                        При загрузке файла<br />произошла ошибка
+                    </MudText>
+                }
+                else
+                {
+                    <MudText Style=@($"{(isMobile ? "margin-bottom:2vmax;" : "" )}white-space:nowrap; font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px)/(1280 - 480) * (45 - 40) + 40px); line-height: 130%; text-align: center; color: #FFFFFF;")>
+                        Спасибо!
+                    </MudText>
+                }
+            </MudContainer>
+
+            <MudPaper Style="width:100%; left:0; bottom:0; position:absolute; padding: 1.5vmax; background-color: white; border-radius: 30px">
+                @if (!isSuccess)
+                {
+                    <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (20 - 17) + 17px); line-height: 115%; text-align: center; color: #282828;">
+                        @($"Допустимый размер файла — не более {@ErrorSize}Мб")
+                    </MudText>
+                }
+                else
+                {
+                    <MudText Style=@($"{(isMobile ? "margin:1.5vmax;" : "" )}font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (20 - 17) + 17px); line-height: 115%; text-align: center; color: #282828;")>
+                        Ваша заявка отправлена
+                    </MudText>
+                }
+            </MudPaper>
+        </MudStack>
+
+
+    </DialogContent>
+</MudDialog>
+
+
+
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+    [Parameter] public bool isMobile { get; set; }
+
+    [Parameter] public string DialogColor { get; set; }
+
+    [Parameter] public string ErrorSize { get; set; }
+
+    [Parameter] public bool isSuccess { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (isSuccess)
+        {
+            var OnSuccessTask = new Task(() =>
+            {
+                Thread.Sleep(5000);
+                MudDialog.Close();
+            });
+
+            OnSuccessTask.Start();
+        }
+    }
+
+    void Close() => MudDialog.Cancel();
+}

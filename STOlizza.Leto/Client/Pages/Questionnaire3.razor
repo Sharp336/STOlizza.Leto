@@ -1,0 +1,158 @@
+﻿@page "/questionnaire_part_3"
+@inject NavigationManager Nigger
+@inject IDialogService Dis
+<PageTitle>STOлица.Лето</PageTitle>
+
+
+<div class="backgroundPhoto justify-content-center align-content-center align-items-center text-center">
+
+    <div class="d-flex flex-row justify-content-center align-content-center align-items-center text-center" style="position:relative; top: 0; width:100%; padding: 2vh 2vw">
+        <MudImage Src="TopMainLogo.svg" Style="min-height:35px;  height:6vh;" />
+        <MudSpacer />
+        <MudButton>
+            <MudImage Src="ArrowLeft.svg" Style="min-height:25px; height:3vh;" />
+            <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+                <MudText Style="margin-left: 1vw; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 20px; line-height: 115%; text-align: center; color: white;">Назад</MudText>
+            </MudHidden>
+        </MudButton>
+    </div>
+
+    <div class="BodyDiv d-flex flex-row justify-content-center align-content-center align-items-center text-center">
+
+        <div class="align-self-start defaultHidden inputform" style="background-color: #01B2E0; border-radius: 30px 30px 0 0">
+            <MudHidden Breakpoint="Breakpoint.MdAndUp">
+                <MudText Style="margin: 2vmax 2vmax; text-align:start; font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px)/(1280 - 480) * (27 - 25) + 25px); line-height: 130%; color: white;">
+                    Заявка на участие в<br />палаточном лагере<br />«STOлица.Лето»
+                </MudText>
+            </MudHidden>
+
+            <div class="cornersForResize" style=" visibility:visible; padding: 1.5vw; background-color: #FCF0FF">
+
+                <MudForm Style="border-radius: 30px; overflow:hidden; background-color: white;">
+
+                    <MudPaper Class="d-flex flex-row align-items-center " Style="border-radius: 30px; padding: 2vmax; background-color: #01B2E0; position:relative; top: 0; width:100%;">
+
+                        <MudImage Src="Puzzle.svg" Style="min-height:35px; height:3vmax; margin-right: 2vmax" />
+
+                        <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (30 - 20) + 20px); line-height: 115%; text-align: center; color: #FFFFFF;">
+
+                            Творческое задание
+
+                        </MudText>
+
+                    </MudPaper>
+
+                    <MudGrid Style="padding: 2vmax">
+
+                        <MudItem xs="12">
+                            <MudText Style="text-align: start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828;">
+                                Для подачи заявки вам необходимо выполнить творческое задание<br />— <b>снять презентационный ролик.</b><br />В ролике необходимо рассказать о себе и о том, почему именно вы<br />должны стать участником платочного лагеря «STOлица.Лето».<br />Приветствуется креативный подход к съемке ролика.
+                            </MudText>
+                        </MudItem>
+
+                        <MudItem xs="12" Style="padding-left:1vmax;">
+                            <MudText Style="text-align: start; font-family: 'Unbounded'; font-style: normal; font-weight: 600; font-size: 20px; line-height: 130%; color: #282828;">
+                                Требования к ролику:
+                            </MudText>
+                            <MudText Style="margin-left:1vmin; text-align: start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828;">
+                                • ролик должен быть длительностью не более 1 минуты;<br />• разрешение ролика 1920*1080 пикселей, соотношение<br />сторон (16:9);<br />• размер файла не более 100Мб.
+                            </MudText>
+                        </MudItem>
+
+                        <MudItem xs="12">
+                            <MudFileUpload T="IBrowserFile" FilesChanged="UploadFiles" Style="width:100%">
+                                <ButtonTemplate >
+                                    <MudButton HtmlTag="label" for="@context" Style="width:100%; padding:1vmax; border-radius:40px">
+                                        <MudImage Src="Upload.svg" Style="color:black; min-height:35px; height:100%; margin-right: 1vmax" />
+                                        <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: font-size: calc( (100vw - 480px)/(1280 - 480) * (30 - 23) + 23px); line-height: 130%; color: #282828;">
+                                            Выбрать файл
+                                        </MudText>
+                                    </MudButton>
+                                </ButtonTemplate>
+                            </MudFileUpload>
+                        </MudItem>
+
+                        <MudItem xs="12">
+                            <MudText Style="text-align: start;font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 12px; line-height: 115%; color: #282828; opacity: 0.5;">
+                                Обязательное поле
+                            </MudText>
+                        </MudItem>
+
+                    </MudGrid>
+
+                </MudForm>
+
+                <MudHidden Breakpoint="Breakpoint.MdAndUp">
+                    <MudButton @onclick="() => {Submit(false);}" Style="padding:2vmax; width:100%; margin-top: 2vh; background-color: #01B2E0; border-radius: 30px">
+                        <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 20px; line-height: 115%; text-align: center; color: #FFFFFF;">
+                            Подать заявку
+                        </MudText>
+                    </MudButton>
+                </MudHidden>
+
+            </div>
+
+        </div>
+
+        <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+            <MudPaper Class="align-self-start" Style="margin-left: 1vw; background-color: #01B2E0; border-radius: 30px">
+                <MudText Style="white-space:nowrap; margin: 2.5vh 1vw; text-align:start; font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: 30px; line-height: 130%; color: white;">
+                    Заявка на участие в<br />палаточном лагере<br />«STOлица.Лето»
+                </MudText>
+                <MudPaper Style="background-color: white; border-radius: 30px; padding: 1vw">
+                    <MudText Style="text-align:start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 20px; line-height: 115%; color: #282828;">
+                        После заполнения полей<br />переходи к следующему этапу!
+                    </MudText>
+                    <MudButton @onclick="() => {Submit(false);}" Style="padding:1vh; width:100%; margin-top: 2vh; background-color: #01B2E0; border-radius: 30px">
+                        <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 20px; line-height: 115%; text-align: center; color: #FFFFFF;">
+                            Подать заявку
+                        </MudText>
+                    </MudButton>
+                </MudPaper>
+            </MudPaper>
+        </MudHidden>
+    </div>
+
+</div>
+
+
+
+@code {
+
+    IList<IBrowserFile> files = new List<IBrowserFile>();
+    private void UploadFiles(IBrowserFile file)
+    {
+        files.Add(file);
+        //TODO upload the files to the server
+    }
+
+    private void OpenErrorDialog(bool ismobile)
+    {
+        var parameters = new DialogParameters();
+        parameters.Add("DialogColor", "#01B2E0");
+        parameters.Add("ErrorSize", "100");
+        parameters.Add("isSuccess", false);
+        parameters.Add("isMobile", ismobile);
+        Dis.Show<Dialog>("", parameters);
+    }
+
+    private async Task OpenSuccessDialog(bool ismobile)
+    {
+        var parameters = new DialogParameters();
+        parameters.Add("DialogColor", "#ABC704");
+        parameters.Add("ErrorSize", "0");
+        parameters.Add("isSuccess", true);
+        parameters.Add("isMobile", ismobile);
+        await Dis.ShowAsync<Dialog>("", parameters, new() { MaxWidth = MaxWidth.Small }).ContinueWith(delegate { RedirectToHomePage(); });
+    }
+
+    private async Task RedirectToHomePage()
+    {
+        Nigger.NavigateTo("/");
+    }
+
+    private async Task Submit(bool isMobile)
+    {
+        OpenSuccessDialog(isMobile);
+    }
+}
