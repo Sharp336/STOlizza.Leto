@@ -1,6 +1,6 @@
 ﻿@inherits LayoutComponentBase
 
-<MudThemeProvider />
+<MudThemeProvider Theme="myTheme" />
 <MudDialogProvider FullWidth="true"
                    MaxWidth="MaxWidth.Medium"
                    CloseButton="true"
@@ -11,3 +11,19 @@
 <MudSnackbarProvider />
 
 @Body
+
+@code{
+    private MudTheme myTheme = new()
+        {
+            Palette = new Palette
+            {
+                Primary = "#701487",
+                Secondary = "#3D9970",
+                Info = "#001f3f",
+                Success = "#2ECC40",
+                Warning = "#FF851B",
+                Error = "#F44336",
+                AppbarBackground = "#85144b"
+            }
+        };
+}

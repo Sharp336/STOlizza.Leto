@@ -1,16 +1,18 @@
 ﻿@page "/questionnaire_part_1"
 @inject NavigationManager Nigger
 @inject IDialogService Dis
-@inject IQuestionnaireService QuestionnaireService
+@inject IQuestionnaireService QService
+@*@using MudBlazor.Services*@
+@using System.Text;
+@*@implements IAsyncDisposable*@
 <PageTitle>STOлица.Лето</PageTitle>
 
-
-<div class="backgroundPhoto justify-content-center align-content-center align-items-center text-center">
+<EditForm OnSubmit="Submit" Model="@LQDTO" class="justify-content-center align-content-center align-items-center text-center" style="background-image: url(TopMainPhoto.png); position: absolute; width: 100%; background-position: center; background-repeat: no-repeat; background-size: cover;">
     
     <div class="d-flex flex-row justify-content-center align-content-center align-items-center text-center" style="position:relative; top: 0; width:100%; padding: 2vh 2vw">
         <MudImage Src="TopMainLogo.svg" Style="min-height:35px;  height:6vh;"/>
         <MudSpacer/>
-        <MudButton>
+        <MudButton OnClick="GoToHomepage">
             <MudImage Src="ArrowLeft.svg" Style="min-height:25px; height:3vh;"/>
             <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
                 <MudText Style="margin-left: 1vw; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 20px; line-height: 115%; text-align: center; color: white;">Назад</MudText>
@@ -29,8 +31,10 @@
             
             <div class="cornersForResize" style="position:relative; visibility:visible; padding: 1.5vw; background-color: #FCF0FF">
                 
-                <MudForm Style="border-radius: 30px; overflow:hidden; background-color: white;">
-                    
+
+                <MudPaper Style="border-radius: 30px; overflow:hidden; background-color: white;">
+                    <DataAnnotationsValidator />
+
                     <MudPaper Class="d-flex flex-row align-items-center " Style="border-radius: 30px; padding: 2vmax; background-color: #701487; position:relative; top: 0; width:100%;">
                         
                         <MudImage Src="CheckedCircle.svg" Style="min-height:35px; height:3vmax; margin-right: 2vmax"/>
@@ -53,23 +57,30 @@
                             
                             <div class="d-flex flex-row" style="padding: 1vmax;">
                                 
-                                <MudFileUpload T="IReadOnlyList<IBrowserFile>" Style="height: calc( (100vw - 480px)/(1280 - 480) * (80 - 16) + 16px); width: calc( (100vw - 480px)/(1280 - 480) * (80 - 16) + 16px); min-width: 87px; min-height: 80px; background-image: url(YourPhoto.svg); background-position: center; background-repeat: no-repeat; background-size: contain;" />
-                                    
+                                <InputFile style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;" id="input" OnChange="@UploadImageHandle" accept=".png,.jpg,.jpeg" />
+                                <label for="input" style="height: calc( (100vw - 480px)/(1280 - 480) * (80 - 16) + 16px); width: calc( (100vw - 480px)/(1280 - 480) * (80 - 16) + 16px); min-width: 87px; min-height: 80px; background-image: url(YourPhoto.svg); background-position: center; background-repeat: no-repeat; background-size: contain;"/>
+                                
                                 <MudText Style="margin-left: 3vw; text-align:left; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (18 - 13) + 13px); line-height: 115%; color: #282828; opacity: 0.5;">
                                     
-                                    Загрузи фото:<br />— размером не более 25Мб;<br />— белый или однотонный фон;<br />— разрешение фотографии не<br />более 300*400 пикселей;<br />— формат jpg или >png.
+                                    Загрузи фото:<br />— размером не более 25Мб;<br />— белый или однотонный фон;<br />— разрешение фотографии не<br />более 300*400 пикселей;<br />— формат jpg или png.
                                         
                                 </MudText>
                             </div>
                             
+                            @if (!String.IsNullOrEmpty(imagealert))
+                            {
+                                <MudText Style="text-align:left" Color="@Color.Error">
+                                    @imagealert
+                                </MudText>
+                            }
                         </MudItem>
                         
                         <MudItem xs="12" lg="6">
-                            <MudText @bind-Value="LQDTO.FirstName" For="@(() => LQDTO.FirstName)" Style="text-align: start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828;">
+                            <MudText Style="text-align: start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828;">
                                 Фамилия*
                             </MudText>
 
-                            <MudTextField T="string" Placeholder="Иванов"></MudTextField>
+                            <MudTextField @bind-Value="LQDTO.LastName" For="@(() => LQDTO.LastName)" T="string" Placeholder="Иванов"></MudTextField>
                         </MudItem>
                         
                         <MudItem xs="12" lg="6" >
@@ -77,7 +88,7 @@
                                 Имя*
                             </MudText>
                             
-                            <MudTextField T="string" Placeholder="Иван" />
+                            <MudTextField @bind-Value="LQDTO.FirstName" For="@(() => LQDTO.FirstName)" T="string" Placeholder="Иван" />
                         </MudItem>
 
                         <MudItem xs="12">
@@ -85,7 +96,7 @@
                                 Отчество*
                             </MudText>
 
-                            <MudTextField T="string" Placeholder="Иванович" />
+                            <MudTextField @bind-Value="LQDTO.FatherName" For="@(() => LQDTO.FatherName)" T="string" Placeholder="Иванович" />
                         </MudItem>
 
                         <MudItem xs="12" lg="6">
@@ -93,18 +104,38 @@
                                 Дата рождения*
                             </MudText>
 
-                            <MudDatePicker/>
+                            <MudDatePicker PickerClosed="DateChangeHandler"  Color="Color.Primary" @bind-Date="LQDTO.BirthDate" For="@(() => LQDTO.BirthDate)"  />
+
+                            @if (agealert)
+                            {
+                                <MudText Color="@Color.Error">
+                                    Для участия вам должно быть от 18 до 35 лет включительно
+                                </MudText>
+                            }
                         </MudItem>
 
                         <MudItem xs="12" lg="6">
+
                             <MudText Style="text-align: start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828;">
                                 Пол*
                             </MudText>
 
-                            <MudChipSet Mandatory="true">
-                                <MudChip Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828; opacity: 0.5;" Text="М">Мужской</MudChip>
-                                <MudChip Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828; opacity: 0.5;" Text="Ж">Женский</MudChip>
-                            </MudChipSet>
+                            <MudSelect SelectedValuesChanged="SexValueChanged" @bind-Value="LQDTO.Sex" T="string" Placeholder="Выбери из списка" AnchorOrigin="Origin.BottomCenter">
+                                <MudSelectItem Value="@("Мужской")" />
+                                <MudSelectItem Value="@("Женский")" />
+                            </MudSelect>
+
+                            @*<MudChipSet SelectedValuesChanged="SexChipClickHandler" Filter="true" @bind-SelectedChip="selectedSexChip" Mandatory="true">
+                                <MudChip Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828; opacity: 0.5;" Text="true">Мужской</MudChip>
+                                <MudChip Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828; opacity: 0.5;" Text="false">Женский</MudChip>
+                            </MudChipSet>*@
+
+                            @if (SexAlert)
+                            {
+                                <MudText Color="@Color.Error">
+                                    Необходимо выбрать пол!
+                                </MudText>
+                            }
                         </MudItem>
 
                         <MudItem xs="12">
@@ -112,7 +143,7 @@
                                 Место работы/учебы*
                             </MudText>
 
-                            <MudTextField T="string" Placeholder="Укажите место учебы/работы" />
+                            <MudTextField @bind-Value="LQDTO.WorkingPlace" For="@(() => LQDTO.WorkingPlace)" T="string" Placeholder="Укажите место учебы/работы" />
                         </MudItem>
 
                         <MudItem xs="12">
@@ -120,7 +151,7 @@
                                 Занимаемая должность
                             </MudText>
 
-                            <MudTextField T="string" Placeholder="Укажите должность" />
+                            <MudTextField @bind-Value="LQDTO.Post" For="@(() => LQDTO.Post)" T="string" Placeholder="Укажите должность" />
                         </MudItem>
 
                         <MudItem xs="12">
@@ -128,7 +159,7 @@
                                 Номер телефона*
                             </MudText>
 
-                            <MudTextField T="string" Placeholder="+7 (000) 000-00-00" />
+                            <MudTextField @bind-Value="LQDTO.PhoneNumber" For="@(() => LQDTO.PhoneNumber)" T="string" Placeholder="+7 (000) 000-00-00" />
                         </MudItem>
 
                         <MudItem xs="12">
@@ -136,7 +167,7 @@
                                 Ссылка на ВКонтакте
                             </MudText>
 
-                            <MudTextField T="string" Placeholder="Добавь ссылку" HelperText="Укажи полную ссылку на аккаунт, начиная с символов https://vk.com/" />
+                            <MudTextField @bind-Value="LQDTO.VkLink" For="@(() => LQDTO.VkLink)" T="string" Placeholder="Добавь ссылку" HelperText="Укажи полную ссылку на аккаунт, начиная с символов https://vk.com/" />
                         </MudItem>
 
                         <MudItem xs="12" lg="6">
@@ -144,7 +175,7 @@
                                 Никнейм в Telegram*
                             </MudText>
 
-                            <MudTextField T="string" Placeholder="Добавь ссылку" HelperText=@("Укажи никнейм, начиная с символа @") />
+                            <MudTextField @bind-Value="LQDTO.TelegramUsername" For="@(() => LQDTO.TelegramUsername)" T="string" Placeholder="Добавь ссылку" HelperText=@("Укажи никнейм, начиная с символа @") />
                         </MudItem>
 
                         <MudItem xs="12" lg="6">
@@ -152,22 +183,32 @@
                                 Размер одежды
                             </MudText>
 
-                            <MudChipSet Mandatory="true">
+                            <MudSelect @bind-Value="LQDTO.ClothesSize" T="string" Placeholder="Выбери из списка" AnchorOrigin="Origin.BottomCenter">
+                                <MudSelectItem Value="@("XS")" />
+                                <MudSelectItem Value="@("S")" />
+                                <MudSelectItem Value="@("M")" />
+                                <MudSelectItem Value="@("L")" />
+                                <MudSelectItem Value="@("XL")" />
+                                <MudSelectItem Value="@("2XL")" />
+                            </MudSelect>
+
+                            @*<MudChipSet SelectedValuesChanged="SizeChipClickHandler" @bind-SelectedChip="selectedSizeChip" Mandatory="true" Filter="true">
                                 <MudChip Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828; opacity: 0.5;" Text="XS">XS</MudChip>
                                 <MudChip Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828; opacity: 0.5;" Text="S">S</MudChip>
                                 <MudChip Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828; opacity: 0.5;" Text="M">M</MudChip>
                                 <MudChip Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828; opacity: 0.5;" Text="L">L</MudChip>
                                 <MudChip Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828; opacity: 0.5;" Text="XL">XL</MudChip>
                                 <MudChip Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828; opacity: 0.5;" Text="2XL">2XL</MudChip>
-                            </MudChipSet>
+                            </MudChipSet>*@
                         </MudItem>
-                        
-                    </MudGrid>
 
-                </MudForm>
+                    </MudGrid>
+                    
+
+                </MudPaper>
                 
                 <MudHidden Breakpoint="Breakpoint.MdAndUp">
-                    <MudButton @onclick="() => {Submit(true);}" Style="padding:2vmax; width:100%; margin-top: 2vh; background-color: #701487; border-radius: 30px">
+                    <MudButton ButtonType="ButtonType.Submit" Style="padding:2vmax; width:100%; margin-top: 2vh; background-color: #701487; border-radius: 30px">
                         <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 20px; line-height: 115%; text-align: center; color: #FFFFFF;">
                             Далее
                         </MudText>
@@ -187,7 +228,7 @@
                     <MudText Style="text-align:start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 20px; line-height: 115%; color: #282828;">
                         После заполнения полей<br />переходи к следующему этапу!
                     </MudText>
-                    <MudButton @onclick="() => {Submit(false);}" Style="padding:1vh; width:100%; margin-top: 2vh; background-color: #701487; border-radius: 30px">
+                    <MudButton ButtonType="ButtonType.Submit" Style="padding:1vh; width:100%; margin-top: 2vh; background-color: #701487; border-radius: 30px">
                         <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 20px; line-height: 115%; text-align: center; color: #FFFFFF;">
                             Далее
                         </MudText>
@@ -197,17 +238,79 @@
         </MudHidden>
     </div>
     
-</div>
+</EditForm>
 
 
 
 @code {
-    protected override void OnInitialized()
+    //[Inject] IResizeService ResizeService { get; set; }
+
+
+    //int width = 0;
+    //int height = 0;
+
+    //private Guid _subscriptionId;
+
+    //protected override async Task OnAfterRenderAsync(bool firstRender)
+    //{
+    //    if (firstRender)
+    //    {
+    //        _subscriptionId = await ResizeService.SubscribeAsync((size) =>
+    //        {
+    //            width = size.Width;
+    //            height = size.Height;
+    //            InvokeAsync(StateHasChanged);
+    //        }, new ResizeOptions
+    //            {
+    //                ReportRate = 50,
+    //                NotifyOnBreakpointOnly = false,
+    //            });
+
+    //        var size = await ResizeService.GetBrowserWindowSize();
+    //        height = size.Height;
+    //        width = size.Width;
+    //        StateHasChanged();
+    //    }
+
+    //    await base.OnAfterRenderAsync(firstRender);
+    //}
+
+    //public async ValueTask DisposeAsync() => await ResizeService.UnsubscribeAsync(_subscriptionId);
+
+    bool SexAlert = false;
+
+    public IBrowserFile BrowserImage;
+
+    public async Task UploadImageHandle(InputFileChangeEventArgs e)
     {
-        LQDTO = QuestionnaireService.Get();
+        BrowserImage = e.File;
+        if (BrowserImage.ContentType == "image/png" || BrowserImage.ContentType == "image/jpeg")
+        {
+            imagealert = "";
+            if (BrowserImage.Size <= 25000000)
+            {
+                var tempUploadmem = new byte[BrowserImage.Size];
+                imagealert = "";
+                await BrowserImage.OpenReadStream(maxAllowedSize: 25000000).ReadAsync(tempUploadmem, 0, (int)BrowserImage.Size);
+                LQDTO.QImage = tempUploadmem.ToList();
+            }
+            else imagealert = "Изображение должно быть не больше 25 Мегабит";
+        }
+        else imagealert = "Формат изображения должен быть исключительно .png или .jpg(jpeg)";
     }
 
-    public QuestionnaireDTO LQDTO;
+    public string imagealert = "";
+
+    public bool agealert = false;
+
+    public QuestionnairePart1 LQDTO;
+
+    protected override void OnParametersSet()
+    {
+        LQDTO = QService.Get();
+        StateHasChanged();
+    }
+
 
     private void OpenErrorDialog(bool ismobile)
     {
@@ -219,8 +322,84 @@
         Dis.Show<Dialog>("", parameters);
     }
 
-    private async Task Submit(bool isMobile)
+
+
+    private void Submit(EditContext context)
     {
-        Nigger.NavigateTo("/questionnaire_part_2");
+        Console.WriteLine(LQDTO.BirthDate.ToString());
+
+        var result = context.Validate();
+
+        //if (selectedSexChip is null)
+        //{
+        //    SexAlert = true;
+        //}
+        //else
+        //{
+        //    SexAlert = false;
+        //}
+
+        if (string.IsNullOrEmpty(LQDTO.Sex))
+        {
+            SexAlert = true;
+        }
+        else
+        {
+            SexAlert = false;
+        }
+
+        if (LQDTO.BirthDate is null)
+        {
+            agealert = true;
+        }
+        else
+        {
+            agealert = false;
+        }
+
+        if (BrowserImage is null && LQDTO.QImage.Count == 0)
+        {
+            imagealert = "Необходимо прикрепить фотографию";
+        }
+
+        if (result && !SexAlert && !agealert && string.IsNullOrEmpty(imagealert))
+        {
+            QService.SetPart1(LQDTO);
+            Nigger.NavigateTo("/questionnaire_part_2");
+        }
     }
+
+
+    //MudChip selectedSexChip;
+
+    //public void SexChipClickHandler()
+    //{
+    //    LQDTO.IsMale = Convert.ToBoolean(selectedSexChip.Text);
+    //    SexAlert = false;
+    //}
+
+    public void SexValueChanged()
+    {
+        SexAlert = false;
+    }
+
+    MudChip selectedSizeChip;
+
+    public void SizeChipClickHandler()
+    {
+        LQDTO.ClothesSize = selectedSizeChip.Text;
+    }
+
+    public void DateChangeHandler()
+    {
+        agealert = false;
+    }
+
+    public void GoToHomepage()
+    {
+        QService.SetPart1(LQDTO);
+        Nigger.NavigateTo("/");
+    }
+
+    
 }

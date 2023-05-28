@@ -144,7 +144,7 @@
                         <MudText Class="d-flex align-items-center" Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (22 - 20) + 20px); color: white;">@sm.dates</MudText>
                     </div>
                     <div style=" border-radius: 0px 0px 30px 30px;background-color: white; height: 107px" />
-                    <MudButton Class="align-self-center justify-content-center" Style=@($"margin-top: -65px; text-align: center;height: calc( (100vw - 480px)/(1280 - 480) * (150 - 120) + 120px); width: calc( (100vw - 480px)/(1280 - 480) * (150 - 120) + 120px); border-radius: 50%; background-color: {@sm.color};")>
+                    <MudButton @onclick="() => {BeginQuestionnaire(sm.number);}" Class="align-self-center justify-content-center" Style=@($"margin-top: -65px; text-align: center;height: calc( (100vw - 480px)/(1280 - 480) * (150 - 120) + 120px); width: calc( (100vw - 480px)/(1280 - 480) * (150 - 120) + 120px); border-radius: 50%; background-color: {@sm.color};")>
                         <MudText Style="position:relative; top:34%; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (20 - 16) + 16px); line-height: 115%; text-align: center; letter-spacing: 2px; text-transform: uppercase; color: white;">ПОДАТЬ <br />ЗАЯВКУ</MudText>
 
                     </MudButton>
@@ -177,13 +177,6 @@
 
 
 @code {
-    protected override void OnInitialized()
-    {
-        LQDTO = QService.Get();
-    }
-
-    public QuestionnaireDTO LQDTO;
-
     public class Smena
     {
         public int number;
@@ -231,8 +224,7 @@
 
     public void BeginQuestionnaire(int smemaNumber)
     {
-        LQDTO.Smena = smemaNumber;
-        QService.Set(LQDTO);
+        QService.SetSmena(smemaNumber);
         Nigger.NavigateTo("/questionnaire_part_1");
     }
 

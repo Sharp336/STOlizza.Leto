@@ -1,15 +1,16 @@
 ﻿@page "/questionnaire_part_2"
 @inject NavigationManager Nigger
 @inject IDialogService Dis
+@inject IQuestionnaireService QService
 <PageTitle>STOлица.Лето</PageTitle>
 
 
-<div class="backgroundPhoto justify-content-center align-content-center align-items-center text-center">
-
+<EditForm OnSubmit="Submit" Model="@LQDTO" class="justify-content-center align-content-center align-items-center text-center" style="background-image: url(TopMainPhoto.png); position: absolute; width: 100%; background-position: center; background-repeat: no-repeat; background-size: cover;">
+    <DataAnnotationsValidator />
     <div class="d-flex flex-row justify-content-center align-content-center align-items-center text-center" style="position:relative; top: 0; width:100%; padding: 2vh 2vw">
         <MudImage Src="TopMainLogo.svg" Style="min-height:35px;  height:6vh;" />
         <MudSpacer />
-        <MudButton>
+        <MudButton OnClick="GoBack">
             <MudImage Src="ArrowLeft.svg" Style="min-height:25px; height:3vh;" />
             <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
                 <MudText Style="margin-left: 1vw; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 20px; line-height: 115%; text-align: center; color: white;">Назад</MudText>
@@ -49,7 +50,7 @@
                                 Имеется ли у тебя аллергия?
                             </MudText>
 
-                            <MudTextField Lines="6" T="string" Placeholder="Если да, то укажи, на что именно у тебя аллергия"></MudTextField>
+                            <MudTextField @bind-Value="LQDTO.Allergies" For="@(() => LQDTO.Allergies)" Lines="6" T="string" Placeholder="Если да, то укажи, на что именно у тебя аллергия"></MudTextField>
                         </MudItem>
 
                         <MudItem xs="12">
@@ -57,7 +58,7 @@
                                 Имеются ли у тебя хронические заболевания или иные медицинские противопоказания?
                             </MudText>
 
-                            <MudTextField Lines="6" T="string" Placeholder="Если да, то перечисли"></MudTextField>
+                            <MudTextField @bind-Value="LQDTO.Illneses" For="@(() => LQDTO.Illneses)" Lines="6" T="string" Placeholder="Если да, то перечисли"></MudTextField>
                         </MudItem>
 
                         <MudItem xs="12">
@@ -65,12 +66,19 @@
                                 Как ты узнал о палаточном лагере?
                             </MudText>
 
-                            <MudSelect T="string" Placeholder="Выбери из списка" AnchorOrigin="Origin.BottomCenter">
+                            <MudSelect SelectedValuesChanged="OnValueChange" @bind-Value="LQDTO.KnowledgeSource" T="string" Placeholder="Выбери из списка" AnchorOrigin="Origin.BottomCenter">
                                 <MudSelectItem Value="@("Рассказали друзья")" />
                                 <MudSelectItem Value="@("Пригласили в университете")" />
                                 <MudSelectItem Value="@("Рассказали участники спортивной игры «Зарницы»")" />
                                 <MudSelectItem Value="@("Узнал в интернете")" />
                             </MudSelect>
+
+                            @if (KnowledgeSourceAlert)
+                            {
+                                <MudText Style="text-align:left" Color="@Color.Error">
+                                    Необходимо выбрать из списка
+                                </MudText>
+                            }
                         </MudItem>
 
                         <MudItem xs="12">
@@ -78,7 +86,7 @@
                                 Какие навыки и знания ты бы хотел получить, посетив палаточный лагерь?*
                             </MudText>
 
-                            <MudTextField Lines="6" T="string" Placeholder="Добавь текст"></MudTextField>
+                            <MudTextField @bind-Value="LQDTO.DesiredSkills" For="@(() => LQDTO.DesiredSkills)" Lines="6" T="string" Placeholder="Добавь текст"></MudTextField>
                         </MudItem>
 
                         <MudItem xs="12">
@@ -86,7 +94,7 @@
                                 Как ты собираешься применять полученный опыт?*
                             </MudText>
 
-                            <MudTextField Lines="6" T="string" Placeholder="Добавь текст"></MudTextField>
+                            <MudTextField @bind-Value="LQDTO.ExpirienceIntentions" For="@(() => LQDTO.ExpirienceIntentions)" Lines="6" T="string" Placeholder="Добавь текст"></MudTextField>
                         </MudItem>
 
                     </MudGrid>
@@ -94,7 +102,7 @@
                 </MudForm>
 
                 <MudHidden Breakpoint="Breakpoint.MdAndUp">
-                    <MudButton @onclick="() => {Submit(true);}" Style="padding:2vmax; width:100%; margin-top: 2vh; background-color: #FD7D32; border-radius: 30px">
+                    <MudButton ButtonType="ButtonType.Submit" Style="padding:2vmax; width:100%; margin-top: 2vh; background-color: #FD7D32; border-radius: 30px">
                         <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 20px; line-height: 115%; text-align: center; color: #FFFFFF;">
                             Далее
                         </MudText>
@@ -114,7 +122,7 @@
                     <MudText Style="text-align:start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 20px; line-height: 115%; color: #282828;">
                         После заполнения полей<br />переходи к следующему этапу!
                     </MudText>
-                    <MudButton @onclick="() => {Submit(false);}" Style="padding:1vh; width:100%; margin-top: 2vh; background-color: #FD7D32; border-radius: 30px">
+                    <MudButton ButtonType="ButtonType.Submit" Style="padding:1vh; width:100%; margin-top: 2vh; background-color: #FD7D32; border-radius: 30px">
                         <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 20px; line-height: 115%; text-align: center; color: #FFFFFF;">
                             Далее
                         </MudText>
@@ -124,13 +132,45 @@
         </MudHidden>
     </div>
 
-</div>
+</EditForm>
 
 
 
 @code {
-    private async Task Submit(bool isMobile)
+    public QuestionnairePart2 LQDTO;
+
+    bool KnowledgeSourceAlert = false;
+
+    protected override void OnParametersSet()
     {
-        Nigger.NavigateTo("/questionnaire_part_3");
+        LQDTO = QService.Get();
+        StateHasChanged();
+    }
+
+    public void OnValueChange()
+    {
+        KnowledgeSourceAlert = false;
+    }
+
+    public void Submit(EditContext context)
+    {
+        Console.WriteLine(LQDTO.KnowledgeSource);
+        var result = context.Validate();
+        if (string.IsNullOrEmpty(LQDTO.KnowledgeSource))
+        {
+            KnowledgeSourceAlert = true;
+        }
+
+        if (result && !KnowledgeSourceAlert)
+        {
+            QService.SetPart2(LQDTO);
+            Nigger.NavigateTo("/questionnaire_part_3");
+        }
+    }
+
+    public void GoBack()
+    {
+        QService.SetPart2(LQDTO);
+        Nigger.NavigateTo("/questionnaire_part_1");
     }
 }
