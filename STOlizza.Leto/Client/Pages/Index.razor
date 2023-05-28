@@ -1,6 +1,7 @@
 ﻿@page "/"
 @inject NavigationManager Nigger
 @inject IQuestionnaireService QService
+@inject ISmenaService SmService
 <PageTitle>STOлица.Лето</PageTitle>
 
 
@@ -131,7 +132,7 @@
 
         <MudGrid Justify="Justify.SpaceEvenly" Spacing="5" Style="width: 100%;" Class="d-flex align-content-center align-self-center justify-content-center align-items-center">
 
-            @foreach (var sm in SmenaList)
+            @foreach (var sm in SmService.GetSmenas())
             {
                 <MudItem xs="12" lg="4" Class="d-flex align-content-center align-self-center justify-content-center flex-column" Style="margin-bottom: 7vh; text-align: center;">
                     <div style="min-height:91px; padding: 20px 40px; border-radius: 30px 30px 0px 0px; background-color: @sm.color; font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px)/(1280 - 480) * (50 - 39) + 39px); line-height: 115%; color: white;">@sm.number смена</div>
@@ -144,7 +145,7 @@
                         <MudText Class="d-flex align-items-center" Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (22 - 20) + 20px); color: white;">@sm.dates</MudText>
                     </div>
                     <div style=" border-radius: 0px 0px 30px 30px;background-color: white; height: 107px" />
-                    <MudButton @onclick="() => {BeginQuestionnaire(sm.number);}" Class="align-self-center justify-content-center" Style=@($"margin-top: -65px; text-align: center;height: calc( (100vw - 480px)/(1280 - 480) * (150 - 120) + 120px); width: calc( (100vw - 480px)/(1280 - 480) * (150 - 120) + 120px); border-radius: 50%; background-color: {@sm.color};")>
+                    <MudButton Disabled="!sm.isAvailable" @onclick="() => {BeginQuestionnaire(sm.number);}" Class="align-self-center justify-content-center" Style=@($"margin-top: -65px; text-align: center;height: calc( (100vw - 480px)/(1280 - 480) * (150 - 120) + 120px); width: calc( (100vw - 480px)/(1280 - 480) * (150 - 120) + 120px); border-radius: 50%; background-color: {@sm.color};")>
                         <MudText Style="position:relative; top:34%; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (20 - 16) + 16px); line-height: 115%; text-align: center; letter-spacing: 2px; text-transform: uppercase; color: white;">ПОДАТЬ <br />ЗАЯВКУ</MudText>
 
                     </MudButton>
@@ -177,41 +178,8 @@
 
 
 @code {
-    public class Smena
-    {
-        public int number;
-        public string title;
-        public string description;
-        public string dates;
-        public string color;
-
-        public Smena(int _number, string _title, string _description, string _dates, string _colour)
-        {
-            number = _number;
-            title = _title;
-            description = _description;
-            dates = _dates;
-            color = _colour;
-        }
-    }
-
-    List<Smena> SmenaList = new()
-    {
-        //new Smena(1, "Лидеры молодежных сообществ", "Поможет найти единомышленников и проявить лидерские качества", "16-19 июня", "#701487"),
-        new Smena(1, "Патриотика", "Для тех, кто любит свою Родину", "20-23 июня", "#701487"),
-        new Smena(2, "Медиа", "Научит создавать инфоповоды и развиваться в медиа поле", "26-29 июня", "#701487"),
-        new Smena(3, "Спорт", "Научит побеждать и развивать свою физическую силу", "1-4 июля", "#701487"),
-        new Smena(4, "Легенды Зарницы", "Напомнит об ответственности за себя и своих близких", "6-9 июля", "#FD7D32"),
-        new Smena(5, "Студенческое самоуправление", "Поможет создать команду и развить лидерские качества", "11-14 июля", "#FD7D32"),
-        new Smena(6, "НКО", "Расскажет о деятельности Некоммерческих организаций", "16-19 июля", "#FD7D32"),
-        new Smena(7, "Карьера", "Расскажет о возможностях для молодых соискателей работы", "21-24 июля", "#ABC704"),
-        new Smena(8, "Волонтерство", "Расскажет о культуре добровольчества и волонтерстве", "26-29 июля", "#ABC704"),
-        new Smena(9, "Служение Отечеству", "Для тех, у кого безопасность на первом месте", "31 июля – 2 августа", "#ABC704"),
-        new Smena(10, "Духовность", "Расскажет о религиозной культуре в Москве", "5-8 августа", "#01B2E0"),
-        new Smena(11, "Молодые специалисты", "Для молодых управленцев ", "10-13 августа", "#01B2E0"),
-        //new Smena(13, "Искусство", "Научит развивать творческий потенциал и мыслить креативно", "15-18 августа", "#FFDE0D"),
-    };
-
+    
+    
     public List<string> CarouselPhotosPaths = new()
     {
         "carousel1.png","carousel2.png","carousel3.png","carousel4.png","carousel5.png",
