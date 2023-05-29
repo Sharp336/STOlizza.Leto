@@ -1,22 +1,25 @@
 ﻿using STOlizza.Leto.Shared;
+using System.Net.Http.Json;
 
 namespace STOlizza.Leto.Client.Shared
 {
     public interface IQuestionnaireService
     {
 
-        QuestionnaireDTO Get();
+        QuestionnairyDTO Get();
 
         public void SetSmena(int sm);
 
         public void SetPart1(QuestionnairePart1 qp1);
         public void SetPart2(QuestionnairePart2 qp2);
         public void SetVideo(List<byte> vid);
+        public Task<bool> SendQuestionnarry(QuestionnairyDTO qdto);
     }
     public class QuestionnaireService : IQuestionnaireService
     {
-        public QuestionnaireDTO QDTO { get; set; } = new();
-        public QuestionnaireDTO Get() => QDTO;
+        private readonly HttpClient _http;
+        public QuestionnairyDTO QDTO { get; set; } = new();
+        public QuestionnairyDTO Get() => QDTO;
 
         public void SetSmena(int sm)
         {
@@ -50,5 +53,13 @@ namespace STOlizza.Leto.Client.Shared
         {
             QDTO.QVideo = vid;
         }
+
+        public async Task<bool> SendQuestionnarry(QuestionnairyDTO qdto)
+        {
+            var result = await _http.PostAsJsonAsync("api/QuestionnairyDTOes", qdto);
+            return result.IsSuccessStatusCode;
+        }
+
+
     }
 }

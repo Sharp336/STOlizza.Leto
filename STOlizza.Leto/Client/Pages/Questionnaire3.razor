@@ -61,8 +61,8 @@
                         </MudItem>
 
                         <MudItem xs="12">
-                            <MudFileUpload Accept=".mp4" T="IBrowserFile" MaximumFileCount="1" FilesChanged="UploadFile" Style="width:100%">
-                                <ButtonTemplate >
+                            <MudFileUpload Accept=".mp4,.webm,.mov" T="IBrowserFile" MaximumFileCount="1" FilesChanged="UploadFile" Style="width:100%">
+                                <ButtonTemplate>
                                     <MudButton HtmlTag="label" for="@context" Style="width:100%; padding:1vmax; border-radius:40px">
                                         <MudImage Src="Upload.svg" Style="color:black; min-height:35px; height:100%; margin-right: 1vmax" />
                                         <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: font-size: calc( (100vw - 480px)/(1280 - 480) * (30 - 23) + 23px); line-height: 130%; color: #282828;">
@@ -144,16 +144,18 @@
         parameters.Add("ErrorSize", "0");
         parameters.Add("isSuccess", true);
         parameters.Add("isMobile", ismobile);
+        parameters.Add("QDTO", QService.Get());
+
         await Dis.ShowAsync<Dialog>("", parameters, new() { MaxWidth = MaxWidth.Small }).ContinueWith(delegate { RedirectToHomePage(); });
     }
 
-    public List<byte> UploadedVideo = new ();
+    public List<byte> UploadedVideo = new();
 
     public string videoAlert = "";
 
     public async Task UploadFile(IBrowserFile file)
     {
-        if (file.ContentType == "video/webm" || file.ContentType == "video/mp4")
+        if (file.ContentType == "video/webm" || file.ContentType == "video/mp4" || file.ContentType == "video/quicktime")
         {
             videoAlert = "";
             if (file.Size <= 100000000)
@@ -165,7 +167,7 @@
             }
             else videoAlert = "Видео должно быть не больше 100 Мегабайт";
         }
-        else videoAlert = "Формат видео должен быть исключительно .mp4 или .webm";
+        else videoAlert = "Формат видео должен быть исключительно .mp4, .webm или .mov";
     }
 
     private async Task Submit(bool isMobile)

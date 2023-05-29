@@ -1,4 +1,6 @@
-﻿<MudDialog Style=@($"background-color: {DialogColor}; border-radius: 30px; overflow:hidden")>
+﻿@inject IQuestionnaireService QService
+
+<MudDialog Style=@($"background-color: {DialogColor}; border-radius: 30px; overflow:hidden")>
     <DialogContent>
 
         @if (!isSuccess)
@@ -8,7 +10,7 @@
 
         <MudStack Style="height:100%; width:100%;">
             <MudContainer Class="d-flex flex-column justify-content-center align-content-center align-items-center text-center" Style=@($"margin-bottom:{(isMobile ? "20%" : "3vmax")}; padding:{(isMobile ? "2" : "3")}vmax; ")>
-                
+
                 @if (!isSuccess)
                 {
                     <MudImage Src="!.svg" Style=@($"margin-bottom: 1vmax ; height: calc( (100vw - 480px)/(1280 - 480) * (80 - {(isMobile ? "60" : "40")}) + {(isMobile ? "60" : "40")}px); width:auto") />
@@ -57,13 +59,16 @@
 
     [Parameter] public bool isSuccess { get; set; }
 
+    [Parameter] public QuestionnairyDTO QDTO { get; set; }
+
     protected override void OnAfterRender(bool firstRender)
     {
         if (isSuccess)
         {
-            var OnSuccessTask = new Task(() =>
+            var OnSuccessTask = new Task(async () =>
             {
-                Thread.Sleep(5000);
+                //await QService.SendQuestionnarry(QDTO);
+                Thread.Sleep(4000);
                 MudDialog.Close();
             });
 

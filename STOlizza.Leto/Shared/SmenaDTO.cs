@@ -4,21 +4,25 @@ namespace STOlizza.Leto.Shared
 {
     public class SmenaDTO
     {
-        public int number;
-        public string title;
-        public string description;
-        public string dates;
-        public string color;
-        public bool isAvailable;
+        [Key]
+        public int Id { get; set; }
+        public int number { get; set; }
+        public string title { get; set; }
+        public string description { get; set; }
+        public string dates { get; set; }
+        public string color { get; set; }
+        public bool isAvailable { get; set; }
 
-        public SmenaDTO(int _number, string _title, string _description, string _dates, string _colour, bool _isavailable)
-        {
-            number = _number;
-            title = _title;
-            description = _description;
-            dates = _dates;
-            color = _colour;
-            isAvailable = _isavailable;
-        }
+        //public SmenaDTO(int _number, string _title, string _description, string _dates, string _colour, bool _isavailable)
+        //{
+        //    number = _number;
+        //    title = _title;
+        //    description = _description;
+        //    dates = _dates;
+        //    color = _colour;
+        //    isAvailable = _isavailable;
+        //}
     }
+
+
 }

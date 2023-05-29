@@ -26,7 +26,9 @@ namespace STOlizza.Leto.Shared
         [DataType(DataType.Text)]
         public string FatherName { get; set; }
 
-
+        [Required(ErrorMessage = "Необходимо указать дату рождения")]
+        [DataType(DataType.DateTime)]
+        [DateValidation]
         public DateTime? BirthDate { get; set; } = null;
 
         
@@ -37,7 +39,10 @@ namespace STOlizza.Leto.Shared
         [DataType(DataType.Text)]
         public string WorkingPlace { get; set; }
 
-
+        [Required(ErrorMessage = "Необходимо указать должность")]
+        [StringLength(20, MinimumLength = 4,
+        ErrorMessage = "Должность должна быть больше 3 символов и не больше 20")]
+        [DataType(DataType.Text)]
         public string? Post { get; set; }
 
         [Required(ErrorMessage = "Необходимо указать номер")]
@@ -46,6 +51,7 @@ namespace STOlizza.Leto.Shared
         public string PhoneNumber { get; set; }
 
 
+        [Required(ErrorMessage = "Необходимо указать ссылку на профиль")]
         [DataType(DataType.Url)]
         [RegularExpression("(http:\\/\\/|https:\\/\\/)?(www.)?(vk\\.com|vkontakte\\.ru)\\/(id(\\d{9})|[a-zA-Z0-9_.]+)", ErrorMessage = "Проверьте правильность введённой ссылки")]
         public string? VkLink { get; set; }
