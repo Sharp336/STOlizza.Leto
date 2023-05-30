@@ -5,10 +5,13 @@ using STOlizza.Leto.Server;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
-builder.Services.AddDbContext<DatabaseContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("RemoteConnectionString")));
+builder.Services.AddDbContext<DatabaseContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("RemoteConnectionString"))); 
+builder.Services.AddCors();
+
+builder.Services.AddCoreAdmin();
 
 var app = builder.Build();
 
@@ -25,7 +28,8 @@ else
     app.UseHsts();
 }
 
-//app.UseCors(x => x.AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowed(origin => true).AllowCredentials());
+app.UseCors(x => x.AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowed(origin => true).AllowCredentials());
+app.UseCoreAdminCustomAuth((serviceProvider) => Task.FromResult(true));
 
 app.UseHttpsRedirection();
 
@@ -39,5 +43,6 @@ app.MapRazorPages();
 app.MapControllers();
 app.MapFallbackToFile("index.html");
 
-
+app.Seed();
+app.MapDefaultControllerRoute();
 app.Run();

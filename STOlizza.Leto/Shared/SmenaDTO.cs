@@ -24,5 +24,8 @@ namespace STOlizza.Leto.Shared
         //}
     }
 
-
+    public class IntDto
+    {
+        public int Id { get; set; }
+    }
 }

@@ -13,10 +13,5 @@ namespace STOlizza.Leto.Server
         {
             NpgsqlModelBuilderExtensions.UseSerialColumns(modelBuilder);
         }
-        public DbSet<STOlizza.Leto.Shared.QuestionnairyDTO>? QuestionnaireClientDTO { get; set; }
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseNpgsql(System.Configuration.ConfigurationManager.ConnectionStrings["RemoteConnectionString1"] .ConnectionString);
-        //}
     }
 }

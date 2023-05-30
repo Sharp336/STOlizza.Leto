@@ -12,7 +12,7 @@ namespace STOlizza.Leto.Client.Shared
 
         public void SetPart1(QuestionnairePart1 qp1);
         public void SetPart2(QuestionnairePart2 qp2);
-        public void SetVideo(List<byte> vid);
+        public void SetVideo(string link);
         public Task<bool> SendQuestionnarry(QuestionnairyDTO qdto);
     }
     public class QuestionnaireService : IQuestionnaireService
@@ -21,13 +21,18 @@ namespace STOlizza.Leto.Client.Shared
         public QuestionnairyDTO QDTO { get; set; } = new();
         public QuestionnairyDTO Get() => QDTO;
 
+        public QuestionnaireService(HttpClient ht)
+        {
+            _http = ht;
+        }
+
         public void SetSmena(int sm)
         {
             QDTO.Smena = sm;
         }
         public void SetPart1(QuestionnairePart1 qp1)
         {
-            QDTO.QImage = qp1.QImage;
+            QDTO.QImage = qp1.QImage.ToArray();
             QDTO.FirstName = qp1.FirstName;
             QDTO.LastName = qp1.LastName;
             QDTO.FatherName = qp1.FatherName;
@@ -49,9 +54,9 @@ namespace STOlizza.Leto.Client.Shared
             QDTO.DesiredSkills = qp2.DesiredSkills;
             QDTO.ExpirienceIntentions = qp2.ExpirienceIntentions;
         }
-        public void SetVideo(List<byte> vid)
+        public void SetVideo(string link)
         {
-            QDTO.QVideo = vid;
+            QDTO.VideoPath = link;
         }
 
         public async Task<bool> SendQuestionnarry(QuestionnairyDTO qdto)

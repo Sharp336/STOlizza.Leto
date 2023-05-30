@@ -7,6 +7,10 @@
     background-size: cover;
 }
 
+.smallscreenmargin {
+    margin: 20vh auto 0 auto;
+}
+
 @media only screen and (max-width: 480px) {
     .backgroundUrl {
         background-image: url(BackgroundZavitushkiMobileSvg.svg);
@@ -16,8 +20,12 @@
         background-repeat: no-repeat;
         background-size: cover;
     }
+
+    .smallscreenmargin {
+        margin: 10vh auto 0 auto;
+    }
 }
 
 @media only screen and (min-width: 480px) {
-
+    
 }

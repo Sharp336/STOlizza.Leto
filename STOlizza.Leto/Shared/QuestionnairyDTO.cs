@@ -8,9 +8,9 @@ namespace STOlizza.Leto.Shared
         public int Id { get; set; }
         public int Smena { get; set; }
 
-        public List<byte> QImage { get; set; } = new ();
+        public byte[] QImage { get; set; }
 
-        public string? ImagePath { get; set; }
+        //public string? ImagePath { get; set; }
 
         public string FirstName { get; set; }
 
@@ -31,7 +31,7 @@ namespace STOlizza.Leto.Shared
         public string PhoneNumber { get; set; }
 
 
-        public string? VkLink { get; set; }
+        public string VkLink { get; set; }
 
         public string TelegramUsername { get; set; }
 
@@ -50,14 +50,13 @@ namespace STOlizza.Leto.Shared
 
         public string ExpirienceIntentions { get; set; }
 
-        public List<byte> QVideo { get; set; } = new ();
         public string? VideoPath { get; set; }
 
 
         public static implicit operator QuestionnairePart1(QuestionnairyDTO qdto)
         {
             var result = new QuestionnairePart1();
-            result.QImage = qdto.QImage;
+            result.QImage = qdto.QImage is null ? new List<byte>() : qdto.QImage.ToList();
             result.FirstName = qdto.FirstName;
             result.LastName = qdto.LastName;
             result.FatherName = qdto.FatherName;
@@ -65,6 +64,7 @@ namespace STOlizza.Leto.Shared
             //result.IsMale = qdto.IsMale;
             result.Sex = qdto.Sex;
             result.WorkingPlace = qdto.WorkingPlace;
+            result.Post = qdto.Post;
             result.PhoneNumber = qdto.PhoneNumber;
             result.VkLink = qdto.VkLink;
             result.TelegramUsername = qdto.TelegramUsername;

@@ -23,14 +23,15 @@ namespace STOlizza.Leto.Server.Controllers
 
         // GET: api/SmenaDTOes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<SmenaDTO>>> GetSmenas()
+        public async Task<ActionResult<List<SmenaDTO>>> GetSmenas()
         {
           if (_context.Smenas == null)
           {
               return NotFound();
           }
-            var result = await _context.Smenas.ToListAsync();
-            return Ok(result);
+            var result = _context.Smenas.ToList();
+            Console.WriteLine("Sent data");
+            return result;
         }
 
         // GET: api/SmenaDTOes/5

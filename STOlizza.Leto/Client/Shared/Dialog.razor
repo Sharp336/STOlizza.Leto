@@ -67,8 +67,8 @@
         {
             var OnSuccessTask = new Task(async () =>
             {
-                //await QService.SendQuestionnarry(QDTO);
-                Thread.Sleep(4000);
+                await QService.SendQuestionnarry(QDTO);
+                //Thread.Sleep(4000);
                 MudDialog.Close();
             });
 

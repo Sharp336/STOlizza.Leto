@@ -29,7 +29,7 @@
 
             <div class="cornersForResize" style=" visibility:visible; padding: 1.5vw; background-color: #FCF0FF">
 
-                <MudForm Style="border-radius: 30px; overflow:hidden; background-color: white;">
+                <div Style="border-radius: 30px; overflow:hidden; background-color: white;">
 
                     <MudPaper Class="d-flex flex-row align-items-center " Style="border-radius: 30px; padding: 2vmax; background-color: #01B2E0; position:relative; top: 0; width:100%;">
 
@@ -47,10 +47,16 @@
 
                         <MudItem xs="12">
                             <MudText Style="text-align: start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828;">
-                                Для подачи заявки вам необходимо выполнить творческое задание<br />— <b>снять презентационный ролик.</b><br />В ролике необходимо рассказать о себе и о том, почему именно вы<br />должны стать участником платочного лагеря «STOлица.Лето».<br />Приветствуется креативный подход к съемке ролика.
+                                Для подачи заявки вам необходимо выполнить творческое задание<br />— <b>снять презентационный ролик.</b><br />В ролике необходимо рассказать о себе и о том, почему именно вы должны стать участником платочного лагеря «STOлица.Лето».<br />Приветствуется креативный подход к съемке ролика.
                             </MudText>
                         </MudItem>
-
+                        <MudItem xs="12" Class="d-flex flex-row">
+                            <MudImage Src="!blue.svg" Style="height:100%; width:auto; margin-right:3vmin" />
+                            
+                            <MudText Style="text-align: start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828;">
+                                Ролик необходимо прикрепить в формате ссылки на Яндекс.Диск или отправить в Telegram палаточного лагеря.
+                            </MudText>
+                        </MudItem>
                         <MudItem xs="12" Style="padding-left:1vmax;">
                             <MudText Style="text-align: start; font-family: 'Unbounded'; font-style: normal; font-weight: 600; font-size: 20px; line-height: 130%; color: #282828;">
                                 Требования к ролику:
@@ -61,41 +67,83 @@
                         </MudItem>
 
                         <MudItem xs="12">
-                            <MudFileUpload Accept=".mp4,.webm,.mov" T="IBrowserFile" MaximumFileCount="1" FilesChanged="UploadFile" Style="width:100%">
-                                <ButtonTemplate>
-                                    <MudButton HtmlTag="label" for="@context" Style="width:100%; padding:1vmax; border-radius:40px">
-                                        <MudImage Src="Upload.svg" Style="color:black; min-height:35px; height:100%; margin-right: 1vmax" />
-                                        <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: font-size: calc( (100vw - 480px)/(1280 - 480) * (30 - 23) + 23px); line-height: 130%; color: #282828;">
-                                            Выбрать файл
-                                        </MudText>
-                                    </MudButton>
-                                </ButtonTemplate>
-                            </MudFileUpload>
 
-                            @if (!String.IsNullOrEmpty(videoAlert))
+                            <MudPaper Style="margin-top: 2vh; width:100%; background-color: #EFFBFF; border-radius: 30px; transition: 1s">
+                                <MudButton @onclick="HandleDiskButton" Style="padding:1vh; width:100%; background-color: #EFFBFF; border-radius: 30px">
+                                    <MudImage Src="chain.svg" Style="height:100%; width:auto; margin-right:1vmin" />
+
+                                    <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (21 - 17) + 17px); line-height: 115%; text-align: center; color: #282828;">
+                                        Добавить ссылку на видео
+                                    </MudText>
+                                </MudButton>
+
+                                
+
+                                @if (isAddingLink)
+                                {
+                                    <MudLink Href="https://yandex.ru/support/disk/share/sharing.html#how-to-share" Target="_blank" Color="Color.Surface" Style="display:block; margin: 1vw;color: white; font-family: 'Unbounded'; font-style: normal; font-weight: 500; font-size: calc( (100vw - 480px)/(1280 - 480) * (19 - 16) + 16px); line-height: 115%; color: #282828;">
+                                        Инструкция как загрузить файл на яндекс диск и получить ссылку
+                                    </MudLink>
+                                    
+                                    <MudTextField @bind-Value="videoLink" T="string" Variant="Variant.Outlined" Placeholder="Вставте ссылку на видео сюда" Style="margin: 1vw; background-color: white"/>
+                                }
+                            </MudPaper>
+
+                            <MudText Style="margin: 1vmax 0 1vmax 0; text-align: center; font-family: 'Unbounded'; font-style: normal; font-weight: 600; font-size: calc( (100vw - 480px)/(1280 - 480) * (21 - 17) + 17px); line-height: 130%; color: #282828;">
+                                или
+                            </MudText>
+
+                            <MudPaper Style="width:100%; background-color: #01B2E0; border-radius: 30px; transition: 1s">
+                                <MudButton @onclick="HandleTelegramButton" Style="padding:1vh; width:100%; background-color: #01B2E0; border-radius: 30px">
+                                    <MudImage Src="telegram.svg" Style="height:100%; width:auto; margin-right:1vmin" />
+
+                                    <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (21 - 17) + 17px); line-height: 115%; text-align: center; color: #FFFFFF;">
+                                        Отправить в Telegram-чат
+                                    </MudText>
+                                </MudButton>
+
+                                @if(isTelegramm){
+
+                                    <MudLink Href="https://t.me/STOlitsa_Leto" Target="_blank" Color="Color.Surface" Style="display:block; margin: 1vw;color: white; font-family: 'Unbounded'; font-style: normal; font-weight: 500; font-size: calc( (100vw - 480px)/(1280 - 480) * (19 - 16) + 16px); line-height: 115%; color: white;">
+                                        Ссылка на чат
+                                    </MudLink>
+
+                                    <div style="padding:1vw">
+                                        <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 300; font-size: calc( (100vw - 480px)/(1280 - 480) * (17 - 15) + 15px); line-height: 115%; text-align: center; color: #FFFFFF;">
+                                            Для прикрепления видео через телеграм перейдите по ссылке ниже и отправьте файл с текстом содержащим указанные вами имя и фамилию
+                                        </MudText>
+                                    </div>
+                                }
+                            </MudPaper>
+                            
+
+                            @if (!String.IsNullOrEmpty(Alert))
                             {
-                                <MudText Style="text-align:left" Color="@Color.Error">
-                                    @videoAlert
+                                <MudText Style="text-align:left; margin-top: 1vmax" Color="@Color.Error">
+                                    @Alert
                                 </MudText>
                             }
                         </MudItem>
 
-                        <MudItem xs="12">
-                            <MudText Style="text-align: start;font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 12px; line-height: 115%; color: #282828; opacity: 0.5;">
-                                Обязательное поле
-                            </MudText>
-                        </MudItem>
-
                     </MudGrid>
 
-                </MudForm>
+                </div>
 
                 <MudHidden Breakpoint="Breakpoint.MdAndUp">
-                    <MudButton @onclick="() => {Submit(false);}" Style="padding:2vmax; width:100%; margin-top: 2vh; background-color: #01B2E0; border-radius: 30px">
+                    <MudButton @onclick="() => {Submit(false);}" Style="padding:2vmax; width:100%; margin-top: 3vh; background-color: #01B2E0; border-radius: 30px">
                         <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 20px; line-height: 115%; text-align: center; color: #FFFFFF;">
                             Подать заявку
                         </MudText>
                     </MudButton>
+
+                    <MudStack Row="true" Style="margin-bottom:3vh; margin-top: 3vh;">
+                        <MudCheckBox @bind-Checked="@isAgreed" Color="Color.Primary" UnCheckedColor="Color.Default" />
+
+                        <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 12px; line-height: 115%; color: #282828;">
+                            Нажимая кнопку «Подать заявку», я принимаю политику конфиденциальности и условия конкурсного отбора
+                        </MudText>
+
+                    </MudStack>
                 </MudHidden>
 
             </div>
@@ -108,14 +156,21 @@
                     Заявка на участие в<br />палаточном лагере<br />«STOлица.Лето»
                 </MudText>
                 <MudPaper Style="background-color: white; border-radius: 30px; padding: 1vw">
-                    <MudText Style="text-align:start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 20px; line-height: 115%; color: #282828;">
-                        После заполнения полей<br />переходи к следующему этапу!
-                    </MudText>
-                    <MudButton @onclick="() => {Submit(false);}" Style="padding:1vh; width:100%; margin-top: 2vh; background-color: #01B2E0; border-radius: 30px">
+                    <MudButton @onclick="() => {Submit(false);}" Style="padding:1vh; width:100%; margin-bottom: 2vh; margin-top: 2vh; background-color: #01B2E0; border-radius: 30px">
                         <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 20px; line-height: 115%; text-align: center; color: #FFFFFF;">
                             Подать заявку
                         </MudText>
                     </MudButton>
+
+                    <MudStack Style="margin-bottom: 1vh; margin-top: 1vh;" Row="true">
+                        <MudCheckBox @bind-Checked="@isAgreed" Color="Color.Primary" UnCheckedColor="Color.Default" />
+                        
+                        <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 12px; line-height: 115%; color: #282828;">
+                            Нажимая кнопку «Подать заявку», я принимаю политику конфиденциальности и условия конкурсного отбора
+                        </MudText>
+
+                    </MudStack>
+
                 </MudPaper>
             </MudPaper>
         </MudHidden>
@@ -126,16 +181,26 @@
 
 
 @code {
+    public bool isTouched = false;
 
-    //private void OpenErrorDialog(bool ismobile)
-    //{
-    //    var parameters = new DialogParameters();
-    //    parameters.Add("DialogColor", "#01B2E0");
-    //    parameters.Add("ErrorSize", "100");
-    //    parameters.Add("isSuccess", false);
-    //    parameters.Add("isMobile", ismobile);
-    //    Dis.Show<Dialog>("", parameters);
-    //}
+    public bool isAddingLink = false;
+
+    public bool isTelegramm = false;
+
+    public bool isAgreed = false;
+
+    public string videoLink = "";
+
+    public void HandleDiskButton()
+    {
+        isAddingLink = !isAddingLink;
+    }
+
+    public async void HandleTelegramButton()
+    {
+        isTouched = true;
+        isTelegramm = !isTelegramm;
+    }
 
     private async Task OpenSuccessDialog(bool ismobile)
     {
@@ -151,37 +216,20 @@
 
     public List<byte> UploadedVideo = new();
 
-    public string videoAlert = "";
-
-    public async Task UploadFile(IBrowserFile file)
-    {
-        if (file.ContentType == "video/webm" || file.ContentType == "video/mp4" || file.ContentType == "video/quicktime")
-        {
-            videoAlert = "";
-            if (file.Size <= 100000000)
-            {
-                videoAlert = "";
-                var tempUploadmem = new byte[file.Size];
-                await file.OpenReadStream(maxAllowedSize: 100000000).ReadAsync(tempUploadmem, 0, (int)file.Size);
-                QService.SetVideo((UploadedVideo = tempUploadmem.ToList()));
-            }
-            else videoAlert = "Видео должно быть не больше 100 Мегабайт";
-        }
-        else videoAlert = "Формат видео должен быть исключительно .mp4, .webm или .mov";
-    }
+    public string Alert = "";
 
     private async Task Submit(bool isMobile)
     {
-
-        if (UploadedVideo.Count == 0)
+        if (!string.IsNullOrEmpty(videoLink) || isTouched)
         {
-            videoAlert = "Необходимо прикрепить видео";
+            QService.SetVideo(string.IsNullOrEmpty(videoLink) ? "telegram" : videoLink);
+            if (isAgreed)
+            {
+                OpenSuccessDialog(isMobile);
+            }
+            else Alert = "Необходимо согласиться с политикой конфиденциальности и условиями конкурсного отбора";
         }
-
-        if (String.IsNullOrEmpty(videoAlert))
-        {
-            OpenSuccessDialog(isMobile);
-        }
+        else Alert = "Вы уверены что прикрепили видео?";
     }
 
     public void GoBack()

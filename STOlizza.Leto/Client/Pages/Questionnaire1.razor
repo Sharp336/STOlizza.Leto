@@ -167,7 +167,7 @@
                                 Ссылка на ВКонтакте*
                             </MudText>
 
-                            <MudTextField @bind-Value="LQDTO.VkLink" For="@(() => LQDTO.VkLink)" T="string" Placeholder="Добавь ссылку" HelperText="Укажи полную ссылку на аккаунт, начиная с символов https://vk.com/" />
+                            <MudTextField @bind-Value="LQDTO.VkLink" For="@(() => LQDTO.VkLink)" T="string" Placeholder="https://vk.com/user" HelperText="Укажи полную ссылку на аккаунт, начиная с символов https://vk.com/" />
                         </MudItem>
 
                         <MudItem xs="12" lg="6">
@@ -175,7 +175,7 @@
                                 Никнейм в Telegram*
                             </MudText>
 
-                            <MudTextField @bind-Value="LQDTO.TelegramUsername" For="@(() => LQDTO.TelegramUsername)" T="string" Placeholder="Добавь ссылку" HelperText=@("Укажи никнейм, начиная с символа @") />
+                            <MudTextField @bind-Value="LQDTO.TelegramUsername" For="@(() => LQDTO.TelegramUsername)" T="string" Placeholder="@("@username")" HelperText=@("Укажи никнейм, начиная с символа @") />
                         </MudItem>
 
                         <MudItem xs="12" lg="6">

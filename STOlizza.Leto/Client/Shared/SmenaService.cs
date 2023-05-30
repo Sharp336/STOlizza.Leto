@@ -12,10 +12,18 @@ namespace STOlizza.Leto.Client.Shared
     public class SmenaService : ISmenaService
     {
         private readonly HttpClient _http;
+
+        public SmenaService(HttpClient ht)
+        {
+            _http = ht;
+        }
+
         public async Task<List<SmenaDTO>> GetSmenas()
         {
-            var result = await _http.GetFromJsonAsync<List<SmenaDTO>>($"http://localhost:8080/api​/SmenaDTOes");
-            return result.ToList();
+
+            var data = await _http.GetAsync(@"api/SmenaDTOes");
+            var result = await data.Content.ReadFromJsonAsync<List<SmenaDTO>>();
+            return result;
         }
         public List<SmenaDTO> GetLocalSmenas()
         {
