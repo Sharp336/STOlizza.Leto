@@ -24,7 +24,7 @@ namespace STOlizza.Leto.Server
                 new SmenaDTO(){number = 3, title = "Спорт", description = "Научит побеждать и развивать свою физическую силу.", dates = "1-4 июля", color = "#701487", isAvailable = true},
                 new SmenaDTO(){number = 4, title = "Легенды Зарницы", description = "Напомнит об ответственности за себя и своих близких.", dates = "6-9 июля", color = "#FD7D32", isAvailable = true},
                 new SmenaDTO(){number = 5, title = "Студенческое самоуправление", description = "Поможет создать команду и развить лидерские качества.", dates = "11-14 июля", color = "#FD7D32", isAvailable = true},
-                new SmenaDTO(){number = 6, title = "НКО", description = "Расскажет о деятельности Некоммерческих организаций.", dates = "16-19 июля", color = "#FD7D32", isAvailable = true},
+                new SmenaDTO(){number = 6, title = "НКО", description = "Расскажет о деятельности некоммерческих организаций.", dates = "16-19 июля", color = "#FD7D32", isAvailable = true},
                 new SmenaDTO(){number = 7, title = "Карьера", description = "Расскажет о возможностях для молодых соискателей работы.", dates = "21-24 июля", color = "#ABC704", isAvailable = true},
                 new SmenaDTO(){number = 8, title = "Волонтерство", description = "Расскажет о культуре добровольчества и волонтерстве.", dates = "26-29 июля", color = "#ABC704", isAvailable = true},
                 new SmenaDTO(){number = 9, title = "Служение Отечеству", description = "Для тех, у кого безопасность на первом месте.", dates = "31 июля – 2 августа", color = "#ABC704", isAvailable = true},
