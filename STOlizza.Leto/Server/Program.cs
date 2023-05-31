@@ -9,7 +9,6 @@ AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<DatabaseContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("RemoteConnectionString"))); 
-builder.Services.AddCors();
 
 builder.Services.AddCoreAdmin();
 
@@ -28,7 +27,6 @@ else
     app.UseHsts();
 }
 
-app.UseCors(x => x.AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowed(origin => true).AllowCredentials());
 app.UseCoreAdminCustomAuth((serviceProvider) => Task.FromResult(true));
 
 app.UseHttpsRedirection();

@@ -18,6 +18,10 @@
     border-radius: 30px;
 }
 
+.znak{
+    height : 50%
+}
+
 .defaultHidden {
     visibility: hidden
 }
@@ -35,6 +39,10 @@
     .inputform {
         width: 100%;
         height: 100%;
+    }
+
+    .znak {
+        height: 100%
     }
 
     .defaultHidden {

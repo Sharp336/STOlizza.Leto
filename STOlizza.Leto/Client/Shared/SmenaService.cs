@@ -23,7 +23,7 @@ namespace STOlizza.Leto.Client.Shared
 
             var data = await _http.GetAsync(@"api/SmenaDTOes");
             var result = await data.Content.ReadFromJsonAsync<List<SmenaDTO>>();
-            return result;
+            return result.OrderBy(sm => sm.number).ToList() ;
         }
         public List<SmenaDTO> GetLocalSmenas()
         {

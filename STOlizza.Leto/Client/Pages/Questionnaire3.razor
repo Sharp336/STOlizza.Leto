@@ -27,7 +27,7 @@
                 </MudText>
             </MudHidden>
 
-            <div class="cornersForResize" style=" visibility:visible; padding: 1.5vw; background-color: #FCF0FF">
+            <div class="cornersForResize" style=" visibility:visible; padding: 1.5vw; background-color: #EFFBFF">
 
                 <div Style="border-radius: 30px; overflow:hidden; background-color: white;">
 
@@ -50,19 +50,19 @@
                                 Для подачи заявки вам необходимо выполнить творческое задание<br />— <b>снять презентационный ролик.</b><br />В ролике необходимо рассказать о себе и о том, почему именно вы должны стать участником платочного лагеря «STOлица.Лето».<br />Приветствуется креативный подход к съемке ролика.
                             </MudText>
                         </MudItem>
-                        <MudItem xs="12" Class="d-flex flex-row">
-                            <MudImage Src="!blue.svg" Style="height:100%; width:auto; margin-right:3vmin" />
+                        <MudItem xs="12" Class="d-flex flex-row py-0 justify-content-center align-items-center align-content-center">
+                            <MudImage Class="znak" Src="!blue.svg" Style="width:auto; margin-right:3vmin" />
                             
-                            <MudText Style="text-align: start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828;">
+                            <MudText Class="mt-3 mt-lg-0 mb-3 mb-lg-0" Style="text-align: start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 100%; color: #282828;">
                                 Ролик необходимо прикрепить в формате ссылки на Яндекс.Диск или отправить в Telegram палаточного лагеря.
                             </MudText>
                         </MudItem>
-                        <MudItem xs="12" Style="padding-left:1vmax;">
+                        <MudItem xs="12" Style="padding-left:1vmax;" Class="py-0">
                             <MudText Style="text-align: start; font-family: 'Unbounded'; font-style: normal; font-weight: 600; font-size: 20px; line-height: 130%; color: #282828;">
                                 Требования к ролику:
                             </MudText>
                             <MudText Style="margin-left:1vmin; text-align: start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828;">
-                                • ролик должен быть длительностью не более 1 минуты;<br />• разрешение ролика 1920*1080 пикселей, соотношение<br />сторон (16:9);<br />• размер файла не более 100Мб.
+                                • ролик должен быть длительностью не более 1 минуты;<br />• разрешение ролика 1920*1080 пикселей, соотношение<br />сторон (16:9);
                             </MudText>
                         </MudItem>
 
@@ -81,11 +81,14 @@
 
                                 @if (isAddingLink)
                                 {
-                                    <MudLink Href="https://yandex.ru/support/disk/share/sharing.html#how-to-share" Target="_blank" Color="Color.Surface" Style="display:block; margin: 1vw;color: white; font-family: 'Unbounded'; font-style: normal; font-weight: 500; font-size: calc( (100vw - 480px)/(1280 - 480) * (19 - 16) + 16px); line-height: 115%; color: #282828;">
-                                        Инструкция как загрузить файл на яндекс диск и получить ссылку
+                                    <MudLink Class="m-2 m-lg-0" Href="https://yandex.ru/support/disk/share/sharing.html#how-to-share" Target="_blank" Color="Color.Surface" Style="display:block; margin: 1vw;color: white; font-family: 'Unbounded'; font-style: normal; font-weight: 500; font-size: calc( (100vw - 480px)/(1280 - 480) * (19 - 16) + 16px); line-height: 115%; color: #282828;">
+                                        Инструкция «Как загрузить файл на Яндекс.Диск и получить ссылку?»
                                     </MudLink>
-                                    
-                                    <MudTextField @bind-Value="videoLink" T="string" Variant="Variant.Outlined" Placeholder="Вставте ссылку на видео сюда" Style="margin: 1vw; background-color: white"/>
+
+                                    <MudTextField Class="mx-4 my-3 m-lg-0" @bind-Value="videoLink" T="string" Variant="Variant.Text" Placeholder="Вставь ссылку на видео сюда" Style="background-color: #EFFBFF; margin: 1vw" />
+                                    <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+                                        <div style="visibility:hidden; height: 1px"/>
+                                    </MudHidden>
                                 }
                             </MudPaper>
 
@@ -104,13 +107,13 @@
 
                                 @if(isTelegramm){
 
-                                    <MudLink Href="https://t.me/STOlitsa_Leto" Target="_blank" Color="Color.Surface" Style="display:block; margin: 1vw;color: white; font-family: 'Unbounded'; font-style: normal; font-weight: 500; font-size: calc( (100vw - 480px)/(1280 - 480) * (19 - 16) + 16px); line-height: 115%; color: white;">
+                                    <MudLink Href="https://t.me/STOlitsa_Leto" Target="_blank" Color="Color.Surface" Style="display:block; margin: 2vw 1vw 1vw 1vw;color: white; font-family: 'Unbounded'; font-style: normal; font-weight: 500; font-size: calc( (100vw - 480px)/(1280 - 480) * (19 - 16) + 16px); line-height: 115%; color: white;">
                                         Ссылка на чат
                                     </MudLink>
 
                                     <div style="padding:1vw">
-                                        <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 300; font-size: calc( (100vw - 480px)/(1280 - 480) * (17 - 15) + 15px); line-height: 115%; text-align: center; color: #FFFFFF;">
-                                            Для прикрепления видео через телеграм перейдите по ссылке ниже и отправьте файл с текстом содержащим указанные вами имя и фамилию
+                                        <MudText Class="m-2 m-lg-0" Style="font-family: 'Unbounded'; font-style: normal; font-weight: 300; font-size: calc( (100vw - 480px)/(1280 - 480) * (17 - 15) + 15px); line-height: 115%; text-align: center; color: #FFFFFF;">
+                                            Для прикрепления видео через Telegram перейди по ссылке ниже и отправьте файл с текстом, содержащим указанные тобой имя и фамилию
                                         </MudText>
                                     </div>
                                 }
@@ -137,9 +140,9 @@
                     </MudButton>
 
                     <MudStack Row="true" Style="margin-bottom:3vh; margin-top: 3vh;">
-                        <MudCheckBox @bind-Checked="@isAgreed" Color="Color.Primary" UnCheckedColor="Color.Default" />
+                        <MudCheckBox Class="align-self-start" @bind-Checked="@isAgreed" Color="Color.Primary" UnCheckedColor="Color.Default" />
 
-                        <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 12px; line-height: 115%; color: #282828;">
+                        <MudText Style="text-align: left; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 12px; line-height: 115%; color: #282828;">
                             Нажимая кнопку «Подать заявку», я принимаю политику конфиденциальности и условия конкурсного отбора
                         </MudText>
 
@@ -163,9 +166,9 @@
                     </MudButton>
 
                     <MudStack Style="margin-bottom: 1vh; margin-top: 1vh;" Row="true">
-                        <MudCheckBox @bind-Checked="@isAgreed" Color="Color.Primary" UnCheckedColor="Color.Default" />
+                        <MudCheckBox Class="align-self-start" @bind-Checked="@isAgreed" Color="Color.Primary" UnCheckedColor="Color.Default" />
                         
-                        <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 12px; line-height: 115%; color: #282828;">
+                        <MudText Style="text-align: left; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 12px; line-height: 115%; color: #282828;">
                             Нажимая кнопку «Подать заявку», я принимаю политику конфиденциальности и условия конкурсного отбора
                         </MudText>
 

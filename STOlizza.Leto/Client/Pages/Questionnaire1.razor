@@ -58,11 +58,11 @@
                             <div class="d-flex flex-row" style="padding: 1vmax;">
                                 
                                 <InputFile style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;" id="input" OnChange="@UploadImageHandle" accept=".png,.jpg,.jpeg" />
-                                <label for="input" style="height: calc( (100vw - 480px)/(1280 - 480) * (80 - 16) + 16px); width: calc( (100vw - 480px)/(1280 - 480) * (80 - 16) + 16px); min-width: 87px; min-height: 80px; background-image: url(YourPhoto.svg); background-position: center; background-repeat: no-repeat; background-size: contain;"/>
+                                <label for="input" style="height: calc( (100vw - 480px)/(1280 - 480) * (80 - 16) + 16px); width: calc( (100vw - 480px)/(1280 - 480) * (80 - 16) + 16px); min-width: 87px; min-height: 80px; background-image: url(@(BrowserImage is null ? "YourPhoto.svg" : "PurpleCheck.svg")); background-position: center; background-repeat: no-repeat; background-size: contain;" />
                                 
                                 <MudText Style="margin-left: 3vw; text-align:left; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (18 - 13) + 13px); line-height: 115%; color: #282828; opacity: 0.5;">
                                     
-                                    Загрузи фото:<br />— размером не более 25Мб;<br />— белый или однотонный фон;<br />— разрешение фотографии не<br />более 300*400 пикселей;<br />— формат jpg или png.
+                                    Загрузи фото:<br />— размером не более 25Мб;<br />— белый или однотонный фон;<br />— разрешение фотографии не более 300*400 пикселей;<br />— формат jpg или png.
                                         
                                 </MudText>
                             </div>
@@ -208,7 +208,7 @@
                 </MudPaper>
                 
                 <MudHidden Breakpoint="Breakpoint.MdAndUp">
-                    <MudButton ButtonType="ButtonType.Submit" Style="padding:2vmax; width:100%; margin-top: 2vh; background-color: #701487; border-radius: 30px">
+                    <MudButton ButtonType="ButtonType.Submit" Style="padding:2vmax; width:100%; margin-top: 4vh; margin-bottom: 4vh; background-color: #701487; border-radius: 30px;   -webkit-box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25); -moz-box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25); box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25);">
                         <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 20px; line-height: 115%; text-align: center; color: #FFFFFF;">
                             Далее
                         </MudText>
