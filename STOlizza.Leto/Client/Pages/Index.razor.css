@@ -16,6 +16,7 @@
 }
 
 
+
 @media all and (max-width: 1280px) {
     .backgroundUrl {
         background-image: url(BackgroundZavitushkiMobileSvg.svg);
@@ -37,9 +38,29 @@
     .gigabebra {
         margin-bottom: 3vh;
     }
+
+    .biba1 {
+        position: relative;
+    }
+
+    .biba2 {
+        position: relative;
+    }
 }
 
 @media all and (min-width: 1279px) {
+    .biba1 {
+        position: absolute;
+        top: 0;
+        width: 50vw;
+    }
+
+    .biba2 {
+        position: absolute;
+        bottom: 0;
+        width: 50vw;
+    }
+
     .gigabebra3 {
         margin-right: 3vw;
     }

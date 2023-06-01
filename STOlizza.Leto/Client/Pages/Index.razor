@@ -16,7 +16,7 @@
 
     <div style="background-color: #FFDE0D; width: 100%; height:3vh" />
 
-    <div class="mb-md-5 d-flex flex-column flex-lg-row align-self-center align-content-center align-items-center justify-content-center" style="width:98vw; margin-top: 20vh; margin-left: auto; margin-right: auto">
+    <div class="mb-md-5 d-flex flex-column flex-lg-row align-self-center align-content-center align-items-center justify-content-center" style="position:relative; width:98vw; margin-top: 20vh; margin-left: auto; margin-right: auto">
 
         <div class="gigabebra3 gigabebra d-flex flex-column" style="padding: 4vh 2vw; border-radius:30px; background-color: white; -webkit-box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25); -moz-box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25); box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25);">
 
@@ -37,9 +37,9 @@
             
         </div>
 
-        <div class="d-flex flex-column" style="justify-content: space-between">
+        <div style="display: block">
 
-            <div class="mb-md-2 gigabebra d-flex flex-row align-content-center align-items-center justify-content-center " style=" border-radius:30px; padding: 4vmin 6vw; background-color: white;  -webkit-box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25); -moz-box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25); box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25);">
+            <div class="biba1 gigabebra d-flex flex-row align-content-center align-items-center justify-content-center " style="border-radius:30px; padding: 4vmin 6vw; background-color: white;  -webkit-box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25); -moz-box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25); box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25);">
 
                 <MudImage Src="calendar.png" Style="margin-right: 2vw; height: calc( (100vw - 480px)/(1280 - 480) * (70 - 35) + 35px)" />
 
@@ -48,8 +48,12 @@
                 </MudText>
 
             </div>
+            
+            
+            <div style="width: 50vw"></div>
 
-            <div class="mt-md-2 gigabebra d-flex flex-row align-content-center align-items-center justify-content-center" style=" border-radius:30px; padding: 2vh 6vw; background-color: white; -webkit-box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25); -moz-box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25); box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25);">
+
+            <div class="biba2 gigabebra d-flex flex-row align-content-center align-items-center justify-content-center" style=" border-radius:30px; padding: 2vh 6vw; background-color: white; -webkit-box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25); -moz-box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25); box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25);">
 
                 <MudImage Src="geopoint.png" Style="margin-right: 2vw; height: calc( (100vw - 480px)/(1280 - 480) * (70 - 35) + 35px)" />
 
@@ -157,10 +161,10 @@
 
             @foreach (var sm in LocalSmenas)
             {
-                <MudItem xs="12" lg="4" Style="padding: 2vmax">
+                <MudItem xs="12" xl="4" Style="padding: 2vmax">
                     <MudPaper Class="d-flex align-content-center align-self-center justify-content-center flex-column" Style="margin-bottom: 7vh; text-align: center; border-radius: 30px; -webkit-box-shadow: 0px 0px 56px 3px rgba(34, 60, 80, 0.14); -moz-box-shadow: 0px 0px 56px 3px rgba(34, 60, 80, 0.14); box-shadow: 0px 0px 56px 3px rgba(34, 60, 80, 0.14);">
                         <div style="min-height:91px; padding: 20px 40px; border-radius: 30px 30px 0px 0px; background-color: @sm.color; font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px)/(1280 - 480) * (50 - 38) + 38px); line-height: 115%; color: white;">@sm.number смена</div>
-                        <div class="d-flex flex-column justify-content-center" style="height:30vh; background-color: white; padding:3vh 1vw">
+                        <div class="d-flex flex-column justify-content-center" style="min-height:30vh; background-color: white; padding:3vh 1vw">
                             <MudText Style="margin-bottom: 2vh; font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px)/(1280 - 480) * (33 - 26) + 26px); line-height: 130%; text-align: center;  color: #282828;">@sm.title</MudText>
                             <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (24 - 22) + 22px); line-height: 120%; text-align: center; color: #282828;">@sm.description</MudText>
                         </div>
