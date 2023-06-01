@@ -1,0 +1,10 @@
+﻿
+.backgroundPhoto {
+    background-image: url(TopMainPhoto.png);
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

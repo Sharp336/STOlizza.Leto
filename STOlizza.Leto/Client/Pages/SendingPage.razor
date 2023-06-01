@@ -1,0 +1,68 @@
+﻿@page "/sending"
+@inject NavigationManager Nigger
+@inject IQuestionnaireService QService
+<PageTitle>STOлица.Лето</PageTitle>
+
+
+<div class="backgroundPhoto justify-content-center align-content-center align-items-center text-center">
+
+    <div class="d-flex flex-row justify-content-center align-content-center align-items-center text-center" style="position:relative; top: 0; width:100%; padding: 2vh 2vw">
+        <MudImage Src="TopMainLogo.svg" Style="min-height:35px;  height:6vh;" />
+        <MudSpacer />
+        <MudButton OnClick="RedirectToHomePage">
+            <MudImage Src="ArrowLeft.svg" Style="min-height:25px; height:3vh;" />
+            <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+                <MudText Style="margin-left: 1vw; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 20px; line-height: 115%; text-align: center; color: white;">Назад</MudText>
+            </MudHidden>
+        </MudButton>
+    </div>
+
+    <div style="position:absolute; left:50%; top:50%; transform:translate(-50%, -50%)">
+        <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+            <div style="margin-left: 1vmax; margin-right: 1vmax; background-color: #ABC704; border-radius: 30px" class="d-flex flex-column justify-content-center align-content-center align-items-center text-center align-self-center">
+                <div>
+                    <MudText Style="margin: 3vmax 0; font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px)/(1280 - 480) * (70 - 40) + 40px); line-height: 130%; color: #FFFFFF;">
+                        Спасибо!
+                    </MudText>
+                </div>
+                <div style="background-color: #FFFFFF; border-radius: 30px">
+                    <MudText Style="margin: 2vmax; white-space:nowrap; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (30 - 20) + 20px); line-height: 115%; text-align: center; color: #282828;">
+                        Ваша заявка отправлена
+                    </MudText>
+                </div>
+            </div>
+        </MudHidden>
+
+        <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+            <div style="background-color: #ABC704; border-radius: 30px" class="d-flex flex-column justify-content-center align-content-center align-items-center text-center align-self-center">
+                <div>
+                    <MudText Style="margin: 3vmax 1vmax; font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px)/(1280 - 480) * (70 - 40) + 40px); line-height: 130%; color: #FFFFFF;">
+                        Спасибо!
+                    </MudText>
+                </div>
+                <div style="background-color: #FFFFFF; border-radius: 30px">
+                    <MudText Style="margin: 2vmax; white-space:nowrap; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (40 - 25) + 25px); line-height: 115%; text-align: center; color: #282828;">
+                        Ваша заявка отправлена
+                    </MudText>
+                </div>
+            </div>
+        </MudHidden>
+    </div>
+
+</div>
+
+
+
+@code {
+
+    protected override async Task OnParametersSetAsync()
+    {
+        var qdto = QService.Get();
+        if (!string.IsNullOrEmpty(qdto.VideoPath)) await QService.SendQuestionnarry();
+    }
+
+    public void RedirectToHomePage()
+    {
+        Nigger.NavigateTo("/");
+    }
+}

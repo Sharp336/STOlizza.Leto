@@ -61,18 +61,17 @@
 
     [Parameter] public QuestionnairyDTO QDTO { get; set; }
 
-    protected override void OnAfterRender(bool firstRender)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (isSuccess)
         {
-            var OnSuccessTask = new Task(async () =>
-            {
-                await QService.SendQuestionnarry(QDTO);
-                Thread.Sleep(8000);
-                MudDialog.Close();
-            });
-
-            OnSuccessTask.Start();
+            //var OnSuccessTask = new Task(async () =>
+            //{
+            //    await QService.SendQuestionnarry(QDTO);
+            //    Thread.Sleep(4000);
+            //    MudDialog.Close();
+            //});
+            //OnSuccessTask.Start();
         }
     }
 
