@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>STOlizza.Leto</title>
     <base href="/" />
+    <link rel="icon" href="/TopMainLogo.ico">
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link href="css/app.css" rel="stylesheet" />
     <link href="STOlizza.Leto.Client.styles.css" rel="stylesheet" />
@@ -16,6 +17,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 <body>
@@ -29,7 +32,7 @@
     <script src="_framework/blazor.webassembly.js"></script>
 
     <script src="_content/MudBlazor/MudBlazor.min.js"></script>
-     
+
     <script>
         function BlazorScrollToId(id) {
             const element = document.getElementById(id);
@@ -42,8 +45,10 @@
             }
         }
 
-        
+
     </script>
+    <script src="/js/animation.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </body>
 
 </html>

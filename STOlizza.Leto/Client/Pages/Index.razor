@@ -16,7 +16,7 @@
 
     <div style="background-color: #FFDE0D; width: 100%; height:3vh" />
 
-    <div class="mb-md-5 d-flex flex-column flex-lg-row align-self-center align-content-center align-items-center justify-content-center" style="position:relative; width:98vw; margin-top: 20vh; margin-left: auto; margin-right: auto">
+    <Animation AnimationNameSelect="@AnimationName.fade" Delay="600" Duration="10000" Class="mb-md-5 d-flex flex-column flex-lg-row align-self-center align-content-center align-items-center justify-content-center" Style="position:relative; width:98vw; margin-top: 20vh; margin-left: auto; margin-right: auto">
 
         <div class="gigabebra3 gigabebra d-flex flex-column" style="padding: 4vh 2vw; border-radius:30px; background-color: white; -webkit-box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25); -moz-box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25); box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25);">
 
@@ -65,128 +65,162 @@
 
         </div>
 
-    </div>
+    </Animation>
 
+    <Animation AnimationNameSelect="@AnimationName.fadeUp" Delay="600" Duration="10000">
+        <MudButton @onclick="GoToSmenas" Class="raise mt-md-5 py-5 d-flex align-content-center align-items-center justify-content-center" Style="margin: auto; background-color: #FFDE0D; width: 98vw; border-radius: 60px; -webkit-box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25); -moz-box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25); box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25);">
+            <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px)/(1280 - 480) * (34 - 22) + 22px); line-height: 115%; text-align: center; letter-spacing: 3px; text-transform: uppercase;">ПОДАТЬ ЗАЯВКУ</MudText>
+        </MudButton>
+    </Animation>
 
-
-    <MudButton @onclick="GoToSmenas" Class="mt-md-5 py-5 d-flex align-content-center align-items-center justify-content-center" Style="margin: auto; background-color: #FFDE0D; width: 98vw; border-radius: 60px; -webkit-box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25); -moz-box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25); box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25);">
-        <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px)/(1280 - 480) * (34 - 22) + 22px); line-height: 115%; text-align: center; letter-spacing: 3px; text-transform: uppercase;">ПОДАТЬ ЗАЯВКУ</MudText>
-    </MudButton>
+    
 
     <div class="smallscreenmargin d-flex flex-column" style="width:90vw; ">
-        <div class="d-flex flex-column flex-lg-row" style="margin-bottom: 4vh ">
-            <MudText Style="text-align:left; margin-right: 30px; font-family: 'Unbounded'; font-style: normal; font-weight: 800; font-size: calc( (100vw - 480px)/(1280 - 480) * (60 - 40) + 40px); line-height: 115%; letter-spacing: 3px; text-transform: uppercase;">ЧТО ТЕБЯ</MudText>
-            <MudText Style="text-align:left; color: #01B2E0; font-family: 'Unbounded'; font-style: normal; font-weight: 800; font-size: calc( (100vw - 480px)/(1280 - 480) * (60 - 40) + 40px); line-height: 115%; letter-spacing: 3px; text-transform: uppercase;">ЖДЁТ?</MudText>
-        </div>
 
-        <MudGrid>
+        <Animation AnimationNameSelect="@AnimationName.fadeDown" Delay="600" Duration="10000">
+            <div class="d-flex flex-column flex-lg-row" style="margin-bottom: 4vh ">
+                <MudText Style="text-align:left; margin-right: 30px; font-family: 'Unbounded'; font-style: normal; font-weight: 800; font-size: calc( (100vw - 480px)/(1280 - 480) * (60 - 40) + 40px); line-height: 115%; letter-spacing: 3px; text-transform: uppercase;">ЧТО ТЕБЯ</MudText>
+                <MudText Style="text-align:left; color: #01B2E0; font-family: 'Unbounded'; font-style: normal; font-weight: 800; font-size: calc( (100vw - 480px)/(1280 - 480) * (60 - 40) + 40px); line-height: 115%; letter-spacing: 3px; text-transform: uppercase;">ЖДЁТ?</MudText>
+            </div>
 
-            <MudItem xs="12" lg="4" Style="padding:1vmax; margin-bottom: 3vh">
-                
-                <MudPaper Style="height:100%; padding:2vmin; background-color: white; border-radius:30px;-webkit-box-shadow: 0px 0px 11px 3px rgba(34, 60, 80, 0.25); -moz-box-shadow: 0px 0px 11px 3px rgba(34, 60, 80, 0.25); box-shadow: 0px 0px 11px 3px rgba(34, 60, 80, 0.25); ">
-                    <MudImage Class="mb-5" Src="expectations1.png" Style="width: 100%; margin:auto; border-radius:28px;" />
-                    <MudText Style="margin-bottom: 1vmin;font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px)/(1280 - 480) * (30 - 24) + 24px); line-height: 115%; text-align: center;  color: #701487;">Образовательная<br />программа</MudText>
-                    <MudText Class="mb-5 mb-lg-0" Style="margin:auto;font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (23 - 17) + 17px); line-height: 130%; text-align: center; color: #282828;">со спикерами и экспертами</MudText>
-                </MudPaper>
-                
-            </MudItem>
+            <MudGrid>
 
-            <MudItem xs="12" lg="4" Style="padding:1vmax; margin-bottom: 3vh">
-                <MudPaper Style="height:100%; padding:2vmin; background-color: white; border-radius:30px;-webkit-box-shadow: 0px 0px 11px 3px rgba(34, 60, 80, 0.25); -moz-box-shadow: 0px 0px 11px 3px rgba(34, 60, 80, 0.25); box-shadow: 0px 0px 11px 3px rgba(34, 60, 80, 0.25); ">
-                    <MudImage Class="mb-5" Src="expectations2.png" Style="width: 100%; margin:auto; border-radius:28px" />
-                    <MudText Style=" margin-bottom: 1vmin;font-family: 'Unbounded' ; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px) /(1280 - 480) * (30 - 24) + 24px); line-height: 115%; text-align: center; color: #01B2E0;">12 треков</MudText>
-                    <MudText Class="mb-5 mb-lg-0" Style="margin:auto;font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (23 - 17) + 17px); line-height: 130%; text-align: center; color: #282828;">по спортивному<br />ориентированию</MudText>
-                </MudPaper>
-            </MudItem>
+                <MudItem xs="12" lg="4" Style="padding:1vmax; margin-bottom: 3vh">
 
-            <MudItem xs="12" lg="4" Style="padding:1vmax; margin-bottom: 3vh">
-                <MudPaper Style="height:100%; padding:2vmin; background-color: white; border-radius:30px;-webkit-box-shadow: 0px 0px 11px 3px rgba(34, 60, 80, 0.25); -moz-box-shadow: 0px 0px 11px 3px rgba(34, 60, 80, 0.25); box-shadow: 0px 0px 11px 3px rgba(34, 60, 80, 0.25); ">
-                    <MudImage Class="mb-5" Src="expectations3.png" Style="width: 100%; margin:auto; border-radius:28px" />
-                    <MudText Class="mt-0 mt-lg-5 mb-5 mb-lg-0" Style="font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px)/(1280 - 480) * (30 - 24) + 24px); line-height: 115%; text-align: center;  color: #701487;">Внеучебные<br />активности</MudText>
-                </MudPaper>
-            </MudItem>
+                    <MudPaper Style="height:100%; padding:2vmin; background-color: white; border-radius:30px;-webkit-box-shadow: 0px 0px 11px 3px rgba(34, 60, 80, 0.25); -moz-box-shadow: 0px 0px 11px 3px rgba(34, 60, 80, 0.25); box-shadow: 0px 0px 11px 3px rgba(34, 60, 80, 0.25); ">
+                        <MudImage Class="mb-5" Src="expectations1.png" Style="width: 100%; margin:auto; border-radius:28px;" />
+                        <MudText Style="margin-bottom: 1vmin;font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px)/(1280 - 480) * (30 - 24) + 24px); line-height: 115%; text-align: center;  color: #701487;">Образовательная<br />программа</MudText>
+                        <MudText Class="mb-5 mb-lg-0" Style="margin:auto;font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (23 - 17) + 17px); line-height: 130%; text-align: center; color: #282828;">со спикерами и экспертами</MudText>
+                    </MudPaper>
 
-        </MudGrid>
+                </MudItem>
+
+                <MudItem xs="12" lg="4" Style="padding:1vmax; margin-bottom: 3vh">
+                    <MudPaper Style="height:100%; padding:2vmin; background-color: white; border-radius:30px;-webkit-box-shadow: 0px 0px 11px 3px rgba(34, 60, 80, 0.25); -moz-box-shadow: 0px 0px 11px 3px rgba(34, 60, 80, 0.25); box-shadow: 0px 0px 11px 3px rgba(34, 60, 80, 0.25); ">
+                        <MudImage Class="mb-5" Src="expectations2.png" Style="width: 100%; margin:auto; border-radius:28px" />
+                        <MudText Style=" margin-bottom: 1vmin;font-family: 'Unbounded' ; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px) /(1280 - 480) * (30 - 24) + 24px); line-height: 115%; text-align: center; color: #01B2E0;">12 треков</MudText>
+                        <MudText Class="mb-5 mb-lg-0" Style="margin:auto;font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (23 - 17) + 17px); line-height: 130%; text-align: center; color: #282828;">по спортивному<br />ориентированию</MudText>
+                    </MudPaper>
+                </MudItem>
+
+                <MudItem xs="12" lg="4" Style="padding:1vmax; margin-bottom: 3vh">
+                    <MudPaper Style="height:100%; padding:2vmin; background-color: white; border-radius:30px;-webkit-box-shadow: 0px 0px 11px 3px rgba(34, 60, 80, 0.25); -moz-box-shadow: 0px 0px 11px 3px rgba(34, 60, 80, 0.25); box-shadow: 0px 0px 11px 3px rgba(34, 60, 80, 0.25); ">
+                        <MudImage Class="mb-5" Src="expectations3.png" Style="width: 100%; margin:auto; border-radius:28px" />
+                        <MudText Class="mt-0 mt-lg-5 mb-5 mb-lg-0" Style="font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px)/(1280 - 480) * (30 - 24) + 24px); line-height: 115%; text-align: center;  color: #701487;">Внеучебные<br />активности</MudText>
+                    </MudPaper>
+                </MudItem>
+
+            </MudGrid>
+        </Animation>
     </div>
 
     <div class="d-flex flex-column" style="width:90vw; margin: 17vh auto 0 auto;">
 
-        <div class="bigscreenmargin align-self-start">
+        <Animation AnimationNameSelect="@AnimationName.fadeLeft" Delay="600" Duration="10000">
             <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
-                <MudText Style="text-align:left; font-family: 'Unbounded'; font-style: normal; font-weight: 800; font-size: calc( (100vw - 480px)/(1280 - 480) * (60 - 40) + 40px); line-height: 115%; letter-spacing: 3px; text-transform: uppercase; color: #282828;">КАК ЭТО<br />БЫЛО В</MudText>
-                <MudText Style="text-align:left; font-family: 'Unbounded'; font-style: normal; font-weight: 800; font-size: calc( (100vw - 480px)/(1280 - 480) * (60 - 40) + 40px); line-height: 115%;  letter-spacing: 3px; text-transform: uppercase;  color: #ABC704;">2022 ГОДУ?</MudText>
+                <div class="align-self-start">
+                    <MudText Style="text-align:left; font-family: 'Unbounded'; font-style: normal; font-weight: 800; font-size: calc( (100vw - 480px)/(1280 - 480) * (60 - 40) + 40px); line-height: 115%; letter-spacing: 3px; text-transform: uppercase; color: #282828;">КАК ЭТО<br />БЫЛО В</MudText>
+                    <MudText Style="text-align:left; font-family: 'Unbounded'; font-style: normal; font-weight: 800; font-size: calc( (100vw - 480px)/(1280 - 480) * (60 - 40) + 40px); line-height: 115%;  letter-spacing: 3px; text-transform: uppercase;  color: #ABC704;">2022 ГОДУ?</MudText>
+                </div>
             </MudHidden>
 
             <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
-                <MudText Style="text-align:left; font-family: 'Unbounded'; font-style: normal; font-weight: 800; font-size: calc( (100vw - 480px)/(1280 - 480) * (60 - 40) + 40px); line-height: 115%; letter-spacing: 3px; text-transform: uppercase; color: #282828;">КАК ЭТО БЫЛО</MudText>
-                <MudText Style="text-align:left; margin-left: 7vw; font-family: 'Unbounded'; font-style: normal; font-weight: 800; font-size: calc( (100vw - 480px)/(1280 - 480) * (60 - 40) + 40px); line-height: 115%;  letter-spacing: 3px; text-transform: uppercase;  color: #ABC704;">В 2022 ГОДУ?</MudText>
+                <div class="align-self-start" style="margin-bottom: -4vh;">
+                    <MudText Style="text-align:left; font-family: 'Unbounded'; font-style: normal; font-weight: 800; font-size: calc( (100vw - 480px)/(1280 - 480) * (60 - 40) + 40px); line-height: 115%; letter-spacing: 3px; text-transform: uppercase; color: #282828;">КАК ЭТО БЫЛО</MudText>
+                    <MudText Style="text-align:left; margin-left: 7vw; font-family: 'Unbounded'; font-style: normal; font-weight: 800; font-size: calc( (100vw - 480px)/(1280 - 480) * (60 - 40) + 40px); line-height: 115%;  letter-spacing: 3px; text-transform: uppercase;  color: #ABC704;">В 2022 ГОДУ?</MudText>
+                </div>
             </MudHidden>
 
-        </div>
 
-        <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
-            <MudCarousel Class="d-flex align-content-center align-self-center justify-content-center" Style="height: 70vh; width:100%" ShowArrows="true" ShowBullets="true" EnableSwipeGesture="true" AutoCycle="true" TData="object">
+            <MudHidden Breakpoint="Breakpoint.Xs" Invert="true">
+                <MudCarousel Class="d-flex align-content-center align-self-center justify-content-center" Style="height: 70vh; width:100%" ShowArrows="false" ShowBullets="true" EnableSwipeGesture="true" AutoCycle="true" TData="object">
 
-                @foreach (var url in CarouselMobilePhotosPaths)
-                {
-                    <MudCarouselItem Style="padding-bottom: 4vh;" Class="d-flex align-content-center align-self-center justify-content-center" Transition="Transition.Fade" Color="@Color.Transparent">
-                        <MudImage Class="d-flex align-content-center align-self-center justify-content-center" Style=" height:100%" Src="@url" />
-                    </MudCarouselItem>
-                }
+                    @foreach (var url in CarouselMobilePhotosPaths)
+                    {
+                        <MudCarouselItem Style="" Class="d-flex align-content-center align-self-center justify-content-center" Transition="Transition.Fade" Color="@Color.Transparent">
+                            <MudImage Class="d-flex align-content-center align-self-center justify-content-center" Style=" height:85%" Src="@url" />
+                        </MudCarouselItem>
+                    }
 
-            </MudCarousel>
-        </MudHidden>
+                </MudCarousel>
+            </MudHidden>
 
-        <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
-            <MudCarousel Class="d-flex align-content-center align-self-center justify-content-center" Style=" height: 55vw; width:85vw" ShowArrows="true" ShowBullets="true" EnableSwipeGesture="true" AutoCycle="true" TData="object">
+            <MudHidden Breakpoint="Breakpoint.Sm" Invert="true">
+                <MudCarousel Class="d-flex align-content-center align-self-center justify-content-center" Style="height: 70vh; width:100%" ShowArrows="true" ShowBullets="true" EnableSwipeGesture="true" AutoCycle="true" TData="object">
 
-                @foreach (var url in CarouselPhotosPaths)
-                {
-                    <MudCarouselItem Class="d-flex align-content-center align-self-center justify-content-center" Transition="Transition.Fade" Color="@Color.Transparent">
-                        <MudImage Class="d-flex align-content-center align-self-center justify-content-center" Style="width:95%; height:auto" Src="@url" />
-                    </MudCarouselItem>
-                }
+                    @foreach (var url in CarouselMobilePhotosPaths)
+                    {
+                        <MudCarouselItem Style="padding-bottom: 4vh;" Class="d-flex align-content-center align-self-center justify-content-center" Transition="Transition.Fade" Color="@Color.Transparent">
+                            <MudImage Class="d-flex align-content-center align-self-center justify-content-center" Style=" height:100%" Src="@url" />
+                        </MudCarouselItem>
+                    }
 
-            </MudCarousel>
-        </MudHidden>
+                </MudCarousel>
+            </MudHidden>
+
+            <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+                <MudCarousel Class="d-flex align-content-center align-self-center justify-content-center" Style=" height: 55vw; width:100%" ShowArrows="true" ShowBullets="true" EnableSwipeGesture="true" AutoCycle="true" TData="object">
+
+                    @foreach (var url in CarouselPhotosPaths)
+                    {
+                        <MudCarouselItem Class="d-flex align-content-center align-self-center justify-content-center" Transition="Transition.Fade" Color="@Color.Transparent">
+                            <MudImage Class="d-flex align-content-center align-self-center justify-content-center" Style="width:95%; height:auto" Src="@url" />
+                        </MudCarouselItem>
+                    }
+
+                </MudCarousel>
+            </MudHidden>
+        </Animation>
 
     </div>
 
-    <div class="d-flex flex-column" style="width:90vw; margin: 15vh auto 45vh auto;">
-        <div id="smenas" class="d-flex flex-row" style="margin-bottom: 6vh">
-            <MudText Style="margin-left: 2vmax; font-family: 'Unbounded'; font-style: normal; font-weight: 800; font-size: calc( (100vw - 480px)/(1280 - 480) * (64 - 45) + 45px); line-height: 115%; letter-spacing: 3px; text-transform: uppercase;  color: #282828;">СМЕНЫ</MudText>
-        </div>
+    <div class="smenasmobilemargin d-flex flex-column" style="margin: 15vh auto 45vh auto;">
+        <Animation AnimationNameSelect="@AnimationName.fadeRight" Delay="600" Duration="10000">
+            
+            <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+                <div id="smenas" class="d-flex flex-row" style="margin-left: 2vmax; margin-bottom: 6vh">
+                    <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 800; font-size: calc( (100vw - 480px)/(1280 - 480) * (64 - 45) + 45px); line-height: 115%; letter-spacing: 3px; text-transform: uppercase;  color: #282828;">СМЕНЫ</MudText>
+                </div>
+            </MudHidden>
 
-        <MudGrid Justify="Justify.SpaceEvenly" Spacing="5" Style="width: 100%;" Class="d-flex align-content-center align-self-center justify-content-center align-items-center">
+            <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+                <div id="smenas" class="d-flex flex-row" style="margin-bottom: 6vh">
+                    <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 800; font-size: calc( (100vw - 480px)/(1280 - 480) * (64 - 45) + 45px); line-height: 115%; letter-spacing: 3px; text-transform: uppercase;  color: #282828;">СМЕНЫ</MudText>
+                </div>
+            </MudHidden>
 
-            @foreach (var sm in LocalSmenas)
-            {
-                <MudItem xs="12" md="6" xl="4" Style="padding: 2vmax">
-                    <MudPaper Class="d-flex align-content-center align-self-center justify-content-center flex-column" Style="margin-bottom: 7vh; text-align: center; border-radius: 30px; -webkit-box-shadow: 0px 0px 56px 3px rgba(34, 60, 80, 0.14); -moz-box-shadow: 0px 0px 56px 3px rgba(34, 60, 80, 0.14); box-shadow: 0px 0px 56px 3px rgba(34, 60, 80, 0.14);">
-                        <div style="min-height:91px; padding: 20px 40px; border-radius: 30px 30px 0px 0px; background-color: @sm.color; font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px)/(1280 - 480) * (50 - 38) + 38px); line-height: 115%; color: white;">@sm.number смена</div>
-                        <div class="d-flex flex-column justify-content-center" style="min-height:30vh; background-color: white; padding:3vh 1vw">
-                            <MudText Style="margin-bottom: 2vh; font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px)/(1280 - 480) * (33 - 26) + 26px); line-height: 130%; text-align: center;  color: #282828;">@sm.title</MudText>
-                            <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (24 - 22) + 22px); line-height: 120%; text-align: center; color: #282828;">@sm.description</MudText>
-                        </div>
-                        <div style="min-height:60px; background-color: @sm.color; text-align:center" class="d-flex justify-content-center flex-row">
-                            <MudImage Class="d-flex align-self-center" Src="calendar.svg" Style="margin-right: 20px; height: calc( (100vw - 480px)/(1280 - 480) * (36 - 32) + 32px)" />
-                            <MudText Class="d-flex align-items-center" Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (22 - 20) + 20px); color: white;">@sm.dates</MudText>
-                        </div>
-                        <div class="d-flex justify-content-center flex-column" style="background-color:white; padding:1vmax; border-radius: 0 0 30px 30px;">
-                            <MudButton Disabled="!sm.isAvailable" @onclick="() => {BeginQuestionnaire(sm.number);}" Class="align-self-center justify-content-center" Style="margin-top: 2vh; margin-bottom: 2vh; width:100%; background-color: #FFDE0D; border-radius: 30px;-webkit-box-shadow: 0px 0px 18px 3px rgba(34, 60, 80, 0.18); -moz-box-shadow: 0px 0px 18px 3px rgba(34, 60, 80, 0.18); box-shadow: 0px 0px 18px 3px rgba(34, 60, 80, 0.18);">
-                                <MudText Style="margin: 1vmin 0 1vmin 0;font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px)/(1280 - 480) * (22 - 20) + 20px); line-height: 115%; text-align: center; letter-spacing: 3px; text-transform: uppercase; color: #282828;">ПОДАТЬ ЗАЯВКУ</MudText>
-                            </MudButton>
-                        </div>
-                    </MudPaper>
-                </MudItem>
-            }
+            <MudGrid Justify="Justify.SpaceEvenly" Spacing="0" Style="width: 100%;" Class="d-flex align-content-center align-self-center justify-content-center align-items-center">
 
-        </MudGrid>
+                @foreach (var sm in LocalSmenas)
+                {
+                    <MudItem xs="12" md="6" xl="4" Style="padding: 2vmax;">
+                        <MudPaper Class="d-flex align-content-center align-self-center justify-content-center flex-column" Style="margin-bottom: 7vh; text-align: center; border-radius: 30px; -webkit-box-shadow: 0px 0px 56px 3px rgba(34, 60, 80, 0.14); -moz-box-shadow: 0px 0px 56px 3px rgba(34, 60, 80, 0.14); box-shadow: 0px 0px 56px 3px rgba(34, 60, 80, 0.14);">
+                            <div style="min-height:91px; padding: 20px 40px; border-radius: 30px 30px 0px 0px; background-color: @sm.color; font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px)/(1280 - 480) * (50 - 33) + 33px); line-height: 115%; color: white;">@sm.number смена</div>
+                            <div class="d-flex flex-column justify-content-center" style="min-height:30vh; background-color: white; padding:3vh 1vw">
+                                <MudText Style="margin-bottom: 2vh; font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px)/(1280 - 480) * (33 - 24) + 24px); line-height: 130%; text-align: center;  color: #282828;">@sm.title</MudText>
+                                <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (24 - 20) + 20px); line-height: 120%; text-align: center; color: #282828;">@sm.description</MudText>
+                            </div>
+                            <div style="min-height:60px; background-color: @sm.color; text-align:center" class="d-flex justify-content-center flex-row">
+                                <MudImage Class="d-flex align-self-center" Src="calendar.svg" Style="margin-right: 20px; height: calc( (100vw - 480px)/(1280 - 480) * (36 - 32) + 32px)" />
+                                <MudText Class="d-flex align-items-center" Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (22 - 17) + 17px); color: white;">@sm.dates</MudText>
+                            </div>
+                            <div class="d-flex justify-content-center flex-column" style="background-color:white; padding:1vmax; border-radius: 0 0 30px 30px;">
+                                <MudButton Disabled="!sm.isAvailable" @onclick="() => {BeginQuestionnaire(sm.number);}" Class="align-self-center justify-content-center" Style="margin-top: 2vh; margin-bottom: 2vh; width:100%; background-color: #FFDE0D; border-radius: 30px;-webkit-box-shadow: 0px 0px 18px 3px rgba(34, 60, 80, 0.18); -moz-box-shadow: 0px 0px 18px 3px rgba(34, 60, 80, 0.18); box-shadow: 0px 0px 18px 3px rgba(34, 60, 80, 0.18);">
+                                    <MudText Style="margin: 1vmin 0 1vmin 0;font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px)/(1280 - 480) * (22 - 20) + 20px); line-height: 115%; text-align: center; letter-spacing: 3px; text-transform: uppercase; color: #282828;">ПОДАТЬ ЗАЯВКУ</MudText>
+                                </MudButton>
+                            </div>
+                        </MudPaper>
+                    </MudItem>
+                }
+
+            </MudGrid>
+            
+        </Animation>
     </div>
 
     <div class="d-flex flex-column align-content-center align-items-center justify-content-center" style="background-color: #ABC704; min-height:301px; height: 39vh; width:100%; position:absolute; bottom:0; padding-bottom: 10vh">
         <MudText Style="margin-bottom: 2vh; font-family: 'Unbounded'; font-style: normal; font-weight: 800; font-size: calc( (100vw - 480px)/(1280 - 480) * (65 - 40) + 40px); line-height: 115%; letter-spacing: 3px; text-transform: uppercase; color: white;">ЕСТЬ ВОПРОСЫ?</MudText>
-        <MudButton @onclick="GoToFAQ" Style="background-color: white; padding: 2vmin 3vmax; border-radius: calc( (100vw - 480px)/(1280 - 480) * (60 - 40) + 40px); -webkit-box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25); -moz-box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25); box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25);">
+        <MudButton Href="https://t.me/STOlitsa_Leto" Target="_blank" Rel="nofollow noopener" Style="background-color: white; padding: 2vmin 3vmax; border-radius: calc( (100vw - 480px)/(1280 - 480) * (60 - 40) + 40px); -webkit-box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25); -moz-box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25); box-shadow: 0px 0px 28px 3px rgba(34, 60, 80, 0.25);">
             <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px)/(1280 - 480) * (33 - 30) + 30px); line-height: 115%;  text-align: center; letter-spacing: 3px; text-transform: uppercase;  color: #ABC704;">ПИШИ СЮДА</MudText>
         </MudButton>
     </div>
@@ -240,10 +274,5 @@
     public void GoToSmenas()
     {
         Nigger.NavigateTo("#smenas");
-    }
-
-    public async void GoToFAQ()
-    {
-        Nigger.NavigateTo("https://t.me/STOlitsa_Leto");
     }
 }

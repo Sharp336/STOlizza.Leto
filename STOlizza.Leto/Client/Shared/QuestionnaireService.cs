@@ -14,6 +14,7 @@ namespace STOlizza.Leto.Client.Shared
         public void SetPart2(QuestionnairePart2 qp2);
         public void SetVideo(string link);
         public Task<bool> SendQuestionnarry();
+        public Task<bool> SendQuestionnarry(QuestionnairyDTO qdto);
     }
     public class QuestionnaireService : IQuestionnaireService
     {
@@ -65,6 +66,10 @@ namespace STOlizza.Leto.Client.Shared
             return result.IsSuccessStatusCode;
         }
 
-
+        public async Task<bool> SendQuestionnarry(QuestionnairyDTO qdto)
+        {
+            var result = await _http.PostAsJsonAsync("api/QuestionnairyDTOes", qdto);
+            return result.IsSuccessStatusCode;
+        }
     }
 }
