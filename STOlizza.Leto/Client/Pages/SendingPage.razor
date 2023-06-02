@@ -55,11 +55,11 @@
 
 @code {
 
-    protected override async Task OnParametersSetAsync()
-    {
-        var qdto = QService.Get();
-        if (!string.IsNullOrEmpty(qdto.VideoPath)) await QService.SendQuestionnarry();
-    }
+    //protected override async Task OnParametersSetAsync()
+    //{
+    //    var qdto = QService.Get();
+    //    if (!string.IsNullOrEmpty(qdto.VideoPath)) await QService.SendQuestionnarry();
+    //}
 
     public void RedirectToHomePage()
     {
