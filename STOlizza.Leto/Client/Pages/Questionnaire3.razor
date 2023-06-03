@@ -2,6 +2,7 @@
 @inject NavigationManager Nigger
 @inject IDialogService Dis
 @inject IQuestionnaireService QService
+@using System.Text.RegularExpressions
 <PageTitle>STOлица.Лето</PageTitle>
 
 
@@ -54,7 +55,7 @@
                             <MudImage Class="znak" Src="!blue.svg" Style="height:50%; margin-right:3vmin" />
                             
                             <MudText Class="mt-3 mt-lg-0 mb-3 mb-lg-0" Style="text-align: start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 100%; color: #282828;">
-                                Ролик необходимо прикрепить в формате ссылки на Яндекс.Диск или отправить в Telegram палаточного лагеря.
+                                Ролик необходимо прикрепить в формате ссылки на Яндекс.Диск.
                             </MudText>
                         </MudItem>
                         <MudItem xs="12" Style="padding-left:1vmax;" Class="py-0">
@@ -68,7 +69,7 @@
 
                         <MudItem xs="12">
 
-                            <MudPaper Style="margin-top: 2vh; width:100%; background-color: #EFFBFF; border-radius: 30px; transition: 1s">
+                            <MudPaper Style="margin-top: 2vh; width:100%; background-color: #EFFBFF; border-radius: 30px; transition: 1s;  -webkit-box-shadow: 0px 0px 56px 3px rgba(34, 60, 80, 0.14); -moz-box-shadow: 0px 0px 56px 3px rgba(34, 60, 80, 0.14); box-shadow: 0px 0px 56px 3px rgba(34, 60, 80, 0.14);">
                                 <MudButton @onclick="HandleDiskButton" Style="padding:1vh; width:100%; background-color: #EFFBFF; border-radius: 30px">
                                     <MudImage Src="chain.svg" Style="height:100%; width:auto; margin-right:1vmin" />
 
@@ -85,39 +86,23 @@
                                         Инструкция «Как загрузить файл на Яндекс.Диск и получить ссылку?»
                                     </MudLink>
 
-                                    <MudTextField Class="mx-4 my-3 m-lg-0" @bind-Value="videoLink" T="string" Variant="Variant.Text" Placeholder="Вставь ссылку на видео сюда" Style="background-color: #EFFBFF; margin: 1vw" />
+                                    <MudTextField Class="mx-4 my-3 m-lg-0" @bind-Value="videoLink" T="string" Variant="Variant.Text" Placeholder="https://disk.yandex.ru/i/y0urf1l3" Style="background-color: #EFFBFF; margin: 1vw" />
                                     <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
                                         <div style="visibility:hidden; height: 1px"/>
                                     </MudHidden>
                                 }
                             </MudPaper>
 
-                            <MudText Style="margin: 1vmax 0 1vmax 0; text-align: center; font-family: 'Unbounded'; font-style: normal; font-weight: 600; font-size: calc( (100vw - 480px)/(1280 - 480) * (21 - 17) + 17px); line-height: 130%; color: #282828;">
-                                или
+                            <MudText Style="margin: 1vmax 0 1vmax 0; text-align: center; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (17 - 15) + 15px); line-height: 130%; color: #282828;">
+                                Если у тебя возникли трудности с загрузкой видео на Яндекс.Диск
                             </MudText>
 
-                            <MudPaper Style="width:100%; background-color: #01B2E0; border-radius: 30px; transition: 1s">
-                                <MudButton @onclick="HandleTelegramButton" Style="padding:1vh; width:100%; background-color: #01B2E0; border-radius: 30px">
-                                    <MudImage Src="telegram.svg" Style="height:100%; width:auto; margin-right:1vmin" />
-
-                                    <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (21 - 17) + 17px); line-height: 115%; text-align: center; color: #FFFFFF;">
-                                        Отправить в Telegram-чат
-                                    </MudText>
-                                </MudButton>
-
-                                @if(isTelegramm){
-
-                                    <MudLink Href="https://t.me/STOlitsa_Leto" Target="_blank" Color="Color.Surface" Style="display:block; margin: 2vw 1vw 1vw 1vw;color: white; font-family: 'Unbounded'; font-style: normal; font-weight: 500; font-size: calc( (100vw - 480px)/(1280 - 480) * (19 - 16) + 16px); line-height: 115%; color: white;">
-                                        Ссылка на чат
-                                    </MudLink>
-
-                                    <div style="padding:1vw">
-                                        <MudText Class="m-2 m-lg-0" Style="font-family: 'Unbounded'; font-style: normal; font-weight: 300; font-size: calc( (100vw - 480px)/(1280 - 480) * (17 - 15) + 15px); line-height: 115%; text-align: center; color: #FFFFFF;">
-                                            Для прикрепления видео через Telegram перейди по ссылке ниже и отправьте файл с текстом, содержащим указанные тобой имя и фамилию
-                                        </MudText>
-                                    </div>
-                                }
-                            </MudPaper>
+                            <MudButton Href="https://t.me/STOlitsa_Leto" Target="_blank" Rel="nofollow noopener" Style="width:100%; background-color: #01B2E0; border-radius: 30px;  -webkit-box-shadow: 0px 0px 56px 3px rgba(34, 60, 80, 0.14); -moz-box-shadow: 0px 0px 56px 3px rgba(34, 60, 80, 0.14); box-shadow: 0px 0px 56px 3px rgba(34, 60, 80, 0.14);">
+                                <MudImage Src="telegram.svg" Style="height:100%"/>
+                                <MudText Style="margin: 1vmin; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (21 - 17) + 17px); line-height: 115%; text-align: center; color: #FFFFFF;">
+                                    Напиши сюда
+                                </MudText>
+                            </MudButton>
                             
 
                             @if (!String.IsNullOrEmpty(Alert))
@@ -205,11 +190,7 @@
 
 
 @code {
-    public bool isTouched = false;
-
     public bool isAddingLink = false;
-
-    public bool isTelegramm = false;
 
     public bool isAgreed = false;
 
@@ -220,21 +201,14 @@
         isAddingLink = !isAddingLink;
     }
 
-    public async void HandleTelegramButton()
-    {
-        isTouched = true;
-        isTelegramm = !isTelegramm;
-    }
-
-    public List<byte> UploadedVideo = new();
 
     public string Alert = "";
 
     public async Task Submit()
     {
-        if (!string.IsNullOrEmpty(videoLink) || isTouched)
+        if (Regex.IsMatch(videoLink, @"disk\.yandex\.ru\/i\/"))
         {
-            QService.SetVideo(string.IsNullOrEmpty(videoLink) ? "telegram" : videoLink);
+            QService.SetVideo(videoLink);
             if (isAgreed)
             {
                 _processing = true;

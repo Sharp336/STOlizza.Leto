@@ -18,7 +18,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    //app.Seed();
+    app.Seed();
     app.UseWebAssemblyDebugging();
 }
 else
@@ -42,6 +42,5 @@ app.MapRazorPages();
 app.MapControllers();
 app.MapFallbackToFile("index.html");
 
-app.Seed();
 app.MapDefaultControllerRoute();
 app.Run();

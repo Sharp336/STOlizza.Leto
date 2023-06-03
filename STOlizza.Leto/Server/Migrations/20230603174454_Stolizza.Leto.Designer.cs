@@ -12,7 +12,7 @@ using STOlizza.Leto.Server;
 namespace STOlizza.Leto.Server.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230530113107_StolizzaLeto")]
+    [Migration("20230603174454_Stolizza.Leto")]
     partial class StolizzaLeto
     {
         /// <inheritdoc />
@@ -114,6 +114,10 @@ namespace STOlizza.Leto.Server.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("availableTill")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("color")
                         .IsRequired()
                         .HasColumnType("text");
@@ -131,6 +135,10 @@ namespace STOlizza.Leto.Server.Migrations
 
                     b.Property<int>("number")
                         .HasColumnType("integer");
+
+                    b.Property<string>("slogan")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("title")
                         .IsRequired()

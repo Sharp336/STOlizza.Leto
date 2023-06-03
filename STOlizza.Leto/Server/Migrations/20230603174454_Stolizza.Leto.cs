@@ -50,10 +50,12 @@ namespace STOlizza.Leto.Server.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     number = table.Column<int>(type: "integer", nullable: false),
+                    slogan = table.Column<string>(type: "text", nullable: false),
                     title = table.Column<string>(type: "text", nullable: false),
                     description = table.Column<string>(type: "text", nullable: false),
                     dates = table.Column<string>(type: "text", nullable: false),
                     color = table.Column<string>(type: "text", nullable: false),
+                    availableTill = table.Column<string>(type: "text", nullable: false),
                     isAvailable = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>

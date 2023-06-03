@@ -1,0 +1,26 @@
+﻿@page "/download-excel"
+@inject IJSRuntime JSRuntime
+@inject HttpClient _httpClient
+
+<div class="d-flex flex-column align-content-center align-items-center align-self-center justify-content-center" style="background-image: url(TopMainPhoto.png); position: absolute; width: 100%; min-height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover;">
+    <MudText Color="Color.Warning" Typo="Typo.h3">Нажмите на кнопку чтобы скачать отчёт</MudText>
+
+    <MudButton Class="mt-5" OnClick="@(async() => await DownloadFile())" Variant="Variant.Filled" Color="Color.Warning">Скачать</MudButton>
+</div>
+
+
+@code {
+    public async Task DownloadFile()
+    {
+        var response = await _httpClient.GetAsync("/api/Excel/DownloadExcel");
+        response.EnsureSuccessStatusCode();
+        var fileBytes = await response.Content.ReadAsByteArrayAsync();
+        string today = DateTime.Now.ToShortDateString();
+        var filename = $"Отклики на {today}.xlsx";
+        await JSRuntime.InvokeAsync<object>("saveAsFile", filename, Convert.ToBase64String(fileBytes));
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await DownloadFile();
+    }
+}
