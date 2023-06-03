@@ -34,7 +34,7 @@
                 </MudText>
             </div>
 
-            
+
         </div>
 
         <div style="display: block">
@@ -48,8 +48,8 @@
                 </MudText>
 
             </div>
-            
-            
+
+
             <div style="width: 50vw"></div>
 
 
@@ -73,7 +73,7 @@
         </MudButton>
     </Animation>
 
-    
+
 
     <div class="smallscreenmargin d-flex flex-column" style="width:90vw; ">
 
@@ -176,7 +176,7 @@
 
     <div class="smenasmobilemargin d-flex flex-column" style="margin: 15vh auto 45vh auto;">
         <Animation AnimationNameSelect="@AnimationName.fadeRight" Delay="600" Duration="10000">
-            
+
             <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
                 <div id="smenas" class="d-flex flex-row" style="margin-left: 2vmax; margin-bottom: 6vh">
                     <MudText Style="font-family: 'Unbounded'; font-style: normal; font-weight: 800; font-size: calc( (100vw - 480px)/(1280 - 480) * (64 - 45) + 45px); line-height: 115%; letter-spacing: 3px; text-transform: uppercase;  color: #282828;">СМЕНЫ</MudText>
@@ -205,16 +205,25 @@
                                 <MudText Class="d-flex align-items-center" Style="font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (22 - 17) + 17px); color: white;">@sm.dates</MudText>
                             </div>
                             <div class="d-flex justify-content-center flex-column" style="background-color:white; padding:1vmax; border-radius: 0 0 30px 30px;">
-                                <MudButton Disabled="!sm.isAvailable" @onclick="() => {BeginQuestionnaire(sm.number);}" Class="align-self-center justify-content-center" Style="margin-top: 2vh; margin-bottom: 2vh; width:100%; background-color: #FFDE0D; border-radius: 30px;-webkit-box-shadow: 0px 0px 18px 3px rgba(34, 60, 80, 0.18); -moz-box-shadow: 0px 0px 18px 3px rgba(34, 60, 80, 0.18); box-shadow: 0px 0px 18px 3px rgba(34, 60, 80, 0.18);">
-                                    <MudText Style="margin: 1vmin 0 1vmin 0;font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px)/(1280 - 480) * (22 - 20) + 20px); line-height: 115%; text-align: center; letter-spacing: 3px; text-transform: uppercase; color: #282828;">ПОДАТЬ ЗАЯВКУ</MudText>
-                                </MudButton>
+                                @if (sm.isAvailable)
+                                {
+                                    <MudButton @onclick="() => {BeginQuestionnaire(sm.number);}" Class="align-self-center justify-content-center" Style="margin-top: 2vh; margin-bottom: 2vh; width:100%; background-color: #FFDE0D; border-radius: 30px;-webkit-box-shadow: 0px 0px 18px 3px rgba(34, 60, 80, 0.18); -moz-box-shadow: 0px 0px 18px 3px rgba(34, 60, 80, 0.18); box-shadow: 0px 0px 18px 3px rgba(34, 60, 80, 0.18);">
+                                        <MudText Style="margin: 1vmin 0 1vmin 0;font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px)/(1280 - 480) * (22 - 20) + 20px); line-height: 115%; text-align: center; letter-spacing: 3px; text-transform: uppercase; color: #282828;">ПОДАТЬ ЗАЯВКУ</MudText>
+                                    </MudButton>
+                                }
+                                else
+                                {
+                                    <MudButton @onclick="() => {isAlertOpened = true;}" Class="align-self-center justify-content-center" Style="opacity:0.5; margin-top: 2vh; margin-bottom: 2vh; width:100%; background-color: #FFDE0D; border-radius: 30px;-webkit-box-shadow: 0px 0px 18px 3px rgba(34, 60, 80, 0.18); -moz-box-shadow: 0px 0px 18px 3px rgba(34, 60, 80, 0.18); box-shadow: 0px 0px 18px 3px rgba(34, 60, 80, 0.18);">
+                                        <MudText Style="margin: 1vmin 0 1vmin 0;font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: calc( (100vw - 480px)/(1280 - 480) * (22 - 20) + 20px); line-height: 115%; text-align: center; letter-spacing: 3px; text-transform: uppercase; color: #282828;">ПОДАТЬ ЗАЯВКУ</MudText>
+                                    </MudButton>
+                                }
                             </div>
                         </MudPaper>
                     </MudItem>
                 }
 
             </MudGrid>
-            
+
         </Animation>
     </div>
 
@@ -238,12 +247,19 @@
 
 
     <AnchorNavigation />
+
+    @if (isAlertOpened)
+    {
+        <MudAlert Style="position: fixed; bottom:0; left:0; right:0" Severity="Severity.Warning" Variant="Variant.Filled" ContentAlignment="HorizontalAlignment.Center" ShowCloseIcon="true" CloseIconClicked="(() => {isAlertOpened = false;})">Запись на эту смену уже закрыта!</MudAlert>
+    }
 </div>
 
 
 
 @code {
     List<SmenaDTO> LocalSmenas = new();
+
+    public bool isAlertOpened = false;
 
     protected override async Task OnInitializedAsync()
     {
