@@ -63,7 +63,7 @@
 
                         <MudItem xs="12">
                             <MudText Style="text-align: start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (19 - 17) + 17px); line-height: 130%; color: #282828;">
-                                Как ты узнал о палаточном лагере?
+                                Как ты узнал о молодежном слете?
                             </MudText>
 
                             <MudSelect SelectedValuesChanged="OnValueChange" @bind-Value="LQDTO.KnowledgeSource" T="string" Placeholder="Выбери из списка" AnchorOrigin="Origin.BottomCenter">
@@ -83,7 +83,7 @@
 
                         <MudItem xs="12">
                             <MudText Style="text-align: start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (19 - 17) + 17px); line-height: 130%; color: #282828;">
-                                Какие навыки и знания ты бы хотел получить, посетив палаточный лагерь?*
+                                Какие навыки и знания ты бы хотел получить, посетив молодежный слет?*
                             </MudText>
 
                             <MudTextField @bind-Value="LQDTO.DesiredSkills" For="@(() => LQDTO.DesiredSkills)" Lines="6" T="string" Placeholder="Добавь текст"></MudTextField>
@@ -116,7 +116,7 @@
         <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
             <MudPaper Class="align-self-start" Style="margin-left: 1vw; background-color: #FD7D32; border-radius: 30px">
                 <MudText Style="white-space:nowrap; margin: 2.5vh 1vw; text-align:start; font-family: 'Unbounded'; font-style: normal; font-weight: 700; font-size: 30px; line-height: 130%; color: white;">
-                    Заявка на участие в<br />палаточном лагере<br />«STOлица.Лето»
+                    Заявка на участие в<br />молодежном слете<br />«STOлица.Лето»
                 </MudText>
                 <MudPaper Style="background-color: white; border-radius: 30px; padding: 1vw">
                     <MudText Style="text-align:start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (19 - 17) + 17px); line-height: 115%; color: #282828;">
