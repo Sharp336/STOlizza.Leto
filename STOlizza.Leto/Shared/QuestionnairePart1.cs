@@ -53,7 +53,7 @@ namespace STOlizza.Leto.Shared
 
         [Required(ErrorMessage = "Необходимо указать ссылку на профиль")]
         [DataType(DataType.Url)]
-        [RegularExpression("(http:\\/\\/|https:\\/\\/)?(www.)?(vk\\.com|vkontakte\\.ru)\\/(id(\\d{9})|[a-zA-Z0-9_.]+)", ErrorMessage = "Проверьте правильность введённой ссылки")]
+        [RegularExpression("(http:\\/\\/|https:\\/\\/)?(www.)?(vk\\.com|vkontakte\\.ru)\\/(id(\\d{9})|[a-zA-Z0-9_.]+)", ErrorMessage = "Проверь правильность введённой ссылки")]
         public string VkLink { get; set; }
 
 
