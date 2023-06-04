@@ -47,7 +47,7 @@ namespace STOlizza.Leto.Shared
 
         [Required(ErrorMessage = "Необходимо указать номер")]
         [DataType(DataType.PhoneNumber)]
-        [RegularExpression("^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$", ErrorMessage = "Проверьте правильность введённого номера")]
+        [RegularExpression("^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$", ErrorMessage = "Проверь правильность введённого номера")]
         public string PhoneNumber { get; set; }
 
 
@@ -59,7 +59,7 @@ namespace STOlizza.Leto.Shared
 
         [Required(ErrorMessage = "Необходимо указать телеграм-никнейм")]
         [DataType(DataType.Text)]
-        [RegularExpression("\\B@(?=\\w{5,64}\\b)[a-zA-Z0-9]+(?:_[a-zA-Z0-9]+)*", ErrorMessage = "Проверьте правильность введённого никнейма")]
+        [RegularExpression("\\B@(?=\\w{5,64}\\b)[a-zA-Z0-9]+(?:_[a-zA-Z0-9]+)*", ErrorMessage = "Проверь правильность введённого никнейма")]
         public string TelegramUsername { get; set; }
 
 

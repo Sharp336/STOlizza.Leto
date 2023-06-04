@@ -48,7 +48,7 @@
 
                         <MudItem xs="12">
                             <MudText Style="text-align: start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828;">
-                                Для подачи заявки вам необходимо выполнить творческое задание<br />— <b>снять презентационный ролик.</b><br />В ролике необходимо рассказать о себе и о том, почему именно вы должны стать участником платочного лагеря «STOлица.Лето».<br />Приветствуется креативный подход к съемке ролика.
+                                Для подачи заявки тебе необходимо выполнить творческое задание<br />— <b>снять презентационный ролик.</b><br />В ролике необходимо рассказать о себе и о том, почему именно ты должен стать участником платочного лагеря «STOлица.Лето».<br />Приветствуется креативный подход к съемке ролика.
                             </MudText>
                         </MudItem>
                         <MudItem xs="12" Class="d-flex flex-row py-0 justify-content-center align-items-center align-content-center">
@@ -135,14 +135,14 @@
 
                     </MudButton>
 
-                    <MudStack Row="true" Style="margin-bottom:3vh; margin-top: 3vh;">
+                    <div class="d-flex flex-row align-content-center align-items-center justify-content-center align-self-center text-center" style="vertical-align:central; margin-bottom:3vh; margin-top: 3vh;">
                         <MudCheckBox Class="align-self-start" @bind-Checked="@isAgreed" Color="Color.Secondary" />
 
-                        <MudText Style="text-align: left; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 12px; line-height: 115%; color: #282828;">
+                        <MudText Style="; vertical-align:central; text-align: left; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 12px; line-height: 115%; color: #282828;">
                             Нажимая кнопку «Подать заявку», я принимаю политику конфиденциальности и условия конкурсного отбора
                         </MudText>
 
-                    </MudStack>
+                    </div>
                 </MudHidden>
 
             </div>
@@ -171,14 +171,14 @@
                         }
                     </MudButton>
 
-                    <MudStack Style="margin-bottom: 1vh; margin-top: 1vh;" Row="true">
+                    <div class="d-flex flex-row align-content-center align-items-center justify-content-center align-self-center text-center" style="vertical-align:central; margin-bottom: 1vh; margin-top: 1vh;">
                         <MudCheckBox Class="align-self-start" @bind-Checked="@isAgreed" Color="Color.Secondary" />
                         
-                        <MudText Style="text-align: left; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 12px; line-height: 115%; color: #282828;">
-                            Нажимая кнопку «Подать заявку», я принимаю политику конфиденциальности и условия конкурсного отбора
+                        <MudText Style="vertical-align:central; text-align: left; font-family: 'Unbounded' ; font-style: normal; font-weight: 400; font-size: 12px; line-height: 115%; color: #282828;">
+                            Нажимая кнопку «Подать заявку», я принимаю <MudLink Target="_blank" Style="font-family: 'Unbounded' ; font-style: normal; font-weight: 400; font-size: 12px; line-height: 115%; color: #282828;" Href="https://disk.yandex.ru/i/gn_YjTXOpUOp0A">политику конфиденциальности</MudLink> и <MudLink Target="_blank" Style="font-family: 'Unbounded' ; font-style: normal; font-weight: 400; font-size: 12px; line-height: 115%; color: #282828;" Href="https://disk.yandex.ru/i/KIT3AipnanuzVA">условия конкурсного отбора</MudLink>
                         </MudText>
 
-                    </MudStack>
+                    </div>
 
                 </MudPaper>
             </MudPaper>
@@ -218,7 +218,7 @@
             }
             else Alert = "Необходимо согласиться с политикой конфиденциальности и условиями конкурсного отбора";
         }
-        else Alert = "Вы уверены что прикрепили видео?";
+        else Alert = "Ты уверен, что прикрепил видео?";
     }
 
     public void GoBack()
