@@ -52,7 +52,6 @@ namespace STOlizza.Leto.Server.Migrations
                     number = table.Column<int>(type: "integer", nullable: false),
                     slogan = table.Column<string>(type: "text", nullable: false),
                     title = table.Column<string>(type: "text", nullable: false),
-                    description = table.Column<string>(type: "text", nullable: false),
                     dates = table.Column<string>(type: "text", nullable: false),
                     color = table.Column<string>(type: "text", nullable: false),
                     availableTill = table.Column<string>(type: "text", nullable: false),

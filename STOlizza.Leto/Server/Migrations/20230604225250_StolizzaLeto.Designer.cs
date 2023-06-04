@@ -12,7 +12,7 @@ using STOlizza.Leto.Server;
 namespace STOlizza.Leto.Server.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230603174454_Stolizza.Leto")]
+    [Migration("20230604225250_StolizzaLeto")]
     partial class StolizzaLeto
     {
         /// <inheritdoc />
@@ -123,10 +123,6 @@ namespace STOlizza.Leto.Server.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("dates")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("description")
                         .IsRequired()
                         .HasColumnType("text");
 

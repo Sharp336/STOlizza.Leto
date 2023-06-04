@@ -123,10 +123,6 @@ namespace STOlizza.Leto.Server.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("description")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<bool>("isAvailable")
                         .HasColumnType("boolean");
 

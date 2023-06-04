@@ -9,7 +9,6 @@ namespace STOlizza.Leto.Shared
         public int number { get; set; }
         public string slogan { get; set; }
         public string title { get; set; }
-        public string description { get; set; }
         public string dates { get; set; }
         public string color { get; set; }
         public string availableTill { get; set; }
