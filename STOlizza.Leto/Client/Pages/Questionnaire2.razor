@@ -143,8 +143,23 @@
 
     protected override void OnParametersSet()
     {
+        Console.WriteLine(QService.GetStep());
         LQDTO = QService.Get();
         StateHasChanged();
+
+        switch (QService.GetStep())
+        {
+            case 1:
+                Nigger.NavigateTo("/questionnaire_part_1");
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            default:
+                Nigger.NavigateTo("/");
+                break;
+        }
     }
 
     public void OnValueChange()
@@ -163,14 +178,14 @@
 
         if (result && !KnowledgeSourceAlert)
         {
-            QService.SetPart2(LQDTO);
+            QService.SetPart2(LQDTO, true);
             Nigger.NavigateTo("/questionnaire_part_3");
         }
     }
 
     public void GoBack()
     {
-        QService.SetPart2(LQDTO);
+        QService.SetPart2(LQDTO, false);
         Nigger.NavigateTo("/questionnaire_part_1");
     }
 }

@@ -86,7 +86,7 @@
                                         Инструкция «Как загрузить файл на Яндекс.Диск и получить ссылку?»
                                     </MudLink>
 
-                                    <MudTextField Class="mx-4 my-3 m-lg-0" @bind-Value="videoLink" T="string" Variant="Variant.Text" Placeholder="https://disk.yandex.ru/i/y0urf1l3" Style="background-color: #EFFBFF; margin: 1vw" />
+                                    <MudTextField Class="mx-4 my-3 m-lg-0" @bind-Value="LQDTO.VideoPath" T="string" Variant="Variant.Text" Placeholder="https://disk.yandex.ru/i/y0urf1l3" Style="background-color: #EFFBFF; margin: 1vw" />
                                     <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
                                         <div style="visibility:hidden; height: 1px"/>
                                     </MudHidden>
@@ -194,21 +194,42 @@
 
     public bool isAgreed = false;
 
-    public string videoLink = "";
+    public QuestionnairyDTO LQDTO;
 
     public void HandleDiskButton()
     {
         isAddingLink = !isAddingLink;
     }
 
+    protected override void OnParametersSet()
+    {
+        Console.WriteLine(QService.GetStep());
+        LQDTO = QService.Get();
+        StateHasChanged();
+
+        switch (QService.GetStep())
+        {
+            case 1:
+                Nigger.NavigateTo("/questionnaire_part_1");
+                break;
+            case 2:
+                Nigger.NavigateTo("/questionnaire_part_2");
+                break;
+            case 3:
+                break;
+            default:
+                Nigger.NavigateTo("/");
+                break;
+        }
+    }
 
     public string Alert = "";
 
     public async Task Submit()
     {
-        if (Regex.IsMatch(videoLink, @"disk\.yandex\.ru\/i\/"))
+        if (Regex.IsMatch(LQDTO.VideoPath, @"disk\.yandex\.ru\/i\/"))
         {
-            QService.SetVideo(videoLink);
+            QService.SetVideo(LQDTO.VideoPath);
             if (isAgreed)
             {
                 _processing = true;

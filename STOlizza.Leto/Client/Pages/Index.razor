@@ -265,6 +265,11 @@
 
     public bool isAlertOpened = false;
 
+    protected override void OnParametersSet()
+    {
+        Console.WriteLine(QService.GetStep());
+    }
+
     protected override async Task OnInitializedAsync()
     {
         LocalSmenas = await SmService.GetSmenas();

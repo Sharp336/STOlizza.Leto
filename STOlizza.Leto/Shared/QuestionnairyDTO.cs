@@ -6,7 +6,7 @@ namespace STOlizza.Leto.Shared
     {
         [Key]
         public int Id { get; set; }
-        public int Smena { get; set; }
+        public int Smena { get; set; } = 0;
 
         public byte[] QImage { get; set; }
 
@@ -50,7 +50,7 @@ namespace STOlizza.Leto.Shared
 
         public string ExpirienceIntentions { get; set; }
 
-        public string? VideoPath { get; set; }
+        public string VideoPath { get; set; } = "";
 
 
         public static implicit operator QuestionnairePart1(QuestionnairyDTO qdto)

@@ -58,7 +58,7 @@
                             <div class="d-flex flex-row" style="padding: 1vmax;">
                                 
                                 <InputFile style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;" id="input" OnChange="@UploadImageHandle" accept=".png,.jpg,.jpeg" />
-                                <label for="input" style="height: calc( (100vw - 480px)/(1280 - 480) * (80 - 16) + 16px); width: calc( (100vw - 480px)/(1280 - 480) * (80 - 16) + 16px); min-width: 87px; min-height: 80px; background-image: url(@(BrowserImage is null ? "YourPhoto.svg" : "PurpleCheck.svg")); background-position: center; background-repeat: no-repeat; background-size: contain;" />
+                                <label for="input" style="height: calc( (100vw - 480px)/(1280 - 480) * (80 - 16) + 16px); width: calc( (100vw - 480px)/(1280 - 480) * (80 - 16) + 16px); min-width: 87px; min-height: 80px; background-image: url(@((QService.isPhotoUploaded() || BrowserImage is not null) ? "PurpleCheck.svg" : "YourPhoto.svg")); background-position: center; background-repeat: no-repeat; background-size: contain;" />
                                 
                                 <MudText Style="margin-left: 3vw; text-align:left; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: calc( (100vw - 480px)/(1280 - 480) * (18 - 13) + 13px); line-height: 115%; color: #282828; opacity: 0.5;">
                                     
@@ -277,6 +277,26 @@
 
     //public async ValueTask DisposeAsync() => await ResizeService.UnsubscribeAsync(_subscriptionId);
 
+    protected override void OnParametersSet()
+    {
+        Console.WriteLine(QService.GetStep());
+        LQDTO = QService.Get();
+        StateHasChanged();
+
+        switch (QService.GetStep())
+        {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            default:
+                Nigger.NavigateTo("/");
+                break;
+        }
+    }
+
     bool SexAlert = false;
 
     public IBrowserFile BrowserImage;
@@ -304,12 +324,6 @@
     public bool agealert = false;
 
     public QuestionnairePart1 LQDTO;
-
-    protected override void OnParametersSet()
-    {
-        LQDTO = QService.Get();
-        StateHasChanged();
-    }
 
 
     private void OpenErrorDialog(bool ismobile)
@@ -364,7 +378,7 @@
 
         if (result && !SexAlert && !agealert && string.IsNullOrEmpty(imagealert))
         {
-            QService.SetPart1(LQDTO);
+            QService.SetPart1(LQDTO, true);
             Nigger.NavigateTo("/questionnaire_part_2");
         }
     }
@@ -397,7 +411,7 @@
 
     public void GoToHomepage()
     {
-        QService.SetPart1(LQDTO);
+        QService.SetPart1(LQDTO, false);
         Nigger.NavigateTo("/");
     }
 

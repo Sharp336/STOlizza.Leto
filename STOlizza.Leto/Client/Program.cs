@@ -15,9 +15,10 @@ var http = new HttpClient()
     BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
 };
 
-builder.Services.AddScoped(sp => http);
+builder.Services.AddSingleton(sp => http);
 
-builder.Services.AddScoped<IQuestionnaireService, QuestionnaireService>();
+builder.Services.AddSingleton<IQuestionnaireService, QuestionnaireService>();
+//builder.Services.AddScoped<IQuestionnaireService, QuestionnaireService>();
 builder.Services.AddScoped<ISmenaService, SmenaService>();
 
 builder.Services.AddMudServices();
