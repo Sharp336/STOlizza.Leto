@@ -28,7 +28,7 @@ namespace STOlizza.Leto.Server
                 new SmenaDTO(){number = 7, slogan="ПОЗНАВАЙ", title = "Карьера", dates = "21-24 июля", color = "#ABC704", availableTill = "11 июля", isAvailable = true},
                 new SmenaDTO(){number = 8, slogan="ПОМОГАЙ", title = "Волонтерство", dates = "26-29 июля", color = "#ABC704", availableTill = "16 июля", isAvailable = true},
                 new SmenaDTO(){number = 9, slogan="БЛАГОДАРИ", title = "Духовность", dates = "31 июля – 2 августа", color = "#ABC704", availableTill = "21 июля", isAvailable = true},
-                new SmenaDTO(){number = 10, slogan="ЗАЩИЩАЙ", title = "\tСлужение Отечеству", dates = "5-8 августа", color = "#01B2E0", availableTill = "26 июля", isAvailable = true},
+                new SmenaDTO(){number = 10, slogan="ЗАЩИЩАЙ", title = "Служение Отечеству", dates = "5-8 августа", color = "#01B2E0", availableTill = "26 июля", isAvailable = true},
                 new SmenaDTO(){number = 11, slogan="СОВЕРШЕНСТВУЙСЯ", title = "Молодые специалисты", dates = "10-13 августа", color = "#01B2E0", availableTill = "31 июля", isAvailable = true},
                 };
 
