@@ -38,6 +38,8 @@ namespace STOlizza.Leto.Shared
 
         public string? ClothesSize { get; set; }
 
+        public string Passport { get; set; }
+
 
         public string? Allergies { get; set; }
 
@@ -69,6 +71,7 @@ namespace STOlizza.Leto.Shared
             result.VkLink = qdto.VkLink;
             result.TelegramUsername = qdto.TelegramUsername;
             result.ClothesSize = qdto.ClothesSize;
+            result.Passport = qdto.Passport;
             return result;
         }
 

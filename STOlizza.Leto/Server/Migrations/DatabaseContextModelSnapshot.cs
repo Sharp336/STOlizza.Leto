@@ -65,6 +65,10 @@ namespace STOlizza.Leto.Server.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("Passport")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("text");
@@ -88,6 +92,7 @@ namespace STOlizza.Leto.Server.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("VideoPath")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("VkLink")
@@ -100,7 +105,7 @@ namespace STOlizza.Leto.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Records");
+                    b.ToTable("Answers");
                 });
 
             modelBuilder.Entity("STOlizza.Leto.Shared.SmenaDTO", b =>
@@ -139,7 +144,7 @@ namespace STOlizza.Leto.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Smenas");
+                    b.ToTable("Shifts");
                 });
 #pragma warning restore 612, 618
         }

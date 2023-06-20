@@ -23,26 +23,24 @@ namespace STOlizza.Leto.Server.Controllers
 
         // GET: api/SmenaDTOes
         [HttpGet]
-        public async Task<ActionResult<List<SmenaDTO>>> GetSmenas()
+        public async Task<ActionResult<IEnumerable<SmenaDTO>>> GetShifts()
         {
-          if (_context.Smenas == null)
+          if (_context.Shifts == null)
           {
               return NotFound();
           }
-            var result = _context.Smenas.ToList();
-            Console.WriteLine("Sent data");
-            return result;
+            return await _context.Shifts.ToListAsync();
         }
 
         // GET: api/SmenaDTOes/5
         [HttpGet("{id}")]
         public async Task<ActionResult<SmenaDTO>> GetSmenaDTO(int id)
         {
-          if (_context.Smenas == null)
+          if (_context.Shifts == null)
           {
               return NotFound();
           }
-            var smenaDTO = await _context.Smenas.FindAsync(id);
+            var smenaDTO = await _context.Shifts.FindAsync(id);
 
             if (smenaDTO == null)
             {
@@ -88,11 +86,11 @@ namespace STOlizza.Leto.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<SmenaDTO>> PostSmenaDTO(SmenaDTO smenaDTO)
         {
-          if (_context.Smenas == null)
+          if (_context.Shifts == null)
           {
-              return Problem("Entity set 'DatabaseContext.Smenas'  is null.");
+              return Problem("Entity set 'DatabaseContext.Shifts'  is null.");
           }
-            _context.Smenas.Add(smenaDTO);
+            _context.Shifts.Add(smenaDTO);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetSmenaDTO", new { id = smenaDTO.Id }, smenaDTO);
@@ -102,17 +100,17 @@ namespace STOlizza.Leto.Server.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSmenaDTO(int id)
         {
-            if (_context.Smenas == null)
+            if (_context.Shifts == null)
             {
                 return NotFound();
             }
-            var smenaDTO = await _context.Smenas.FindAsync(id);
+            var smenaDTO = await _context.Shifts.FindAsync(id);
             if (smenaDTO == null)
             {
                 return NotFound();
             }
 
-            _context.Smenas.Remove(smenaDTO);
+            _context.Shifts.Remove(smenaDTO);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -120,7 +118,7 @@ namespace STOlizza.Leto.Server.Controllers
 
         private bool SmenaDTOExists(int id)
         {
-            return (_context.Smenas?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Shifts?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

@@ -56,6 +56,7 @@ namespace STOlizza.Leto.Client.Shared
             QDTO.VkLink = qp1.VkLink;
             QDTO.TelegramUsername = qp1.TelegramUsername;
             QDTO.ClothesSize = qp1.ClothesSize;
+            QDTO.Passport = qp1.Passport;
 
         }
         public void SetPart2(QuestionnairePart2 qp2, bool isCompleted)

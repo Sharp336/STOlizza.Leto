@@ -19,11 +19,11 @@ namespace STOlizza.Leto.Server.Controllers
         public IActionResult DownloadExcel()
         {
             byte[] reportBytes;
-            if (_context.Records == null)
+            if (_context.Answers == null)
             {
                 return NotFound();
             }
-            var data = _context.Records.ToList();
+            var data = _context.Answers.ToList();
             using (var package = ExcelService.CreateReport(data))
             {
                 reportBytes = package.GetAsByteArray();

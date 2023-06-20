@@ -10,8 +10,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 //builder.Services.AddDbContext<DatabaseContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("LocalConnectionString")));
 //builder.Services.AddDbContext<DatabaseContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("RemoteConnectionString")));
-//builder.Services.AddDbContext<DatabaseContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("NewRemoteConnectionString")));
-builder.Services.AddDbContext<DatabaseContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("NewLocalConnectionString")));
+builder.Services.AddDbContext<DatabaseContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("NewRemoteConnectionString")));
+//builder.Services.AddDbContext<DatabaseContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("NewLocalConnectionString")));
 
 builder.Services.AddCoreAdmin();
 

@@ -65,6 +65,11 @@ namespace STOlizza.Leto.Shared
 
         public string? ClothesSize { get; set; }
 
+        [Required(ErrorMessage = "Необходимо указать номер и серию паспорта")]
+        [DataType(DataType.Text)]
+        [RegularExpression("\\d{4}\\s\\d{6}", ErrorMessage = "Проверь правильность введённого номера и серии")]
+        public string Passport { get; set; }
+
 
     }
 

@@ -6,8 +6,8 @@ namespace STOlizza.Leto.Server
 {
     public class DatabaseContext : DbContext
     {
-        public DbSet<SmenaDTO> Smenas { get; set; }
-        public DbSet<QuestionnairyDTO> Records { get; set; }
+        public DbSet<SmenaDTO> Shifts { get; set; }
+        public DbSet<QuestionnairyDTO> Answers { get; set; }
         public DatabaseContext(DbContextOptions<DatabaseContext> options): base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

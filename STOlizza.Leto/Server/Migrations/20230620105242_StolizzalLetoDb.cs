@@ -7,13 +7,13 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace STOlizza.Leto.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class StolizzaLeto : Migration
+    public partial class StolizzalLetoDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Records",
+                name: "Answers",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -31,20 +31,21 @@ namespace STOlizza.Leto.Server.Migrations
                     VkLink = table.Column<string>(type: "text", nullable: false),
                     TelegramUsername = table.Column<string>(type: "text", nullable: false),
                     ClothesSize = table.Column<string>(type: "text", nullable: true),
+                    Passport = table.Column<string>(type: "text", nullable: false),
                     Allergies = table.Column<string>(type: "text", nullable: true),
                     Illneses = table.Column<string>(type: "text", nullable: true),
                     KnowledgeSource = table.Column<string>(type: "text", nullable: false),
                     DesiredSkills = table.Column<string>(type: "text", nullable: false),
                     ExpirienceIntentions = table.Column<string>(type: "text", nullable: false),
-                    VideoPath = table.Column<string>(type: "text", nullable: true)
+                    VideoPath = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Records", x => x.Id);
+                    table.PrimaryKey("PK_Answers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Smenas",
+                name: "Shifts",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -59,7 +60,7 @@ namespace STOlizza.Leto.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Smenas", x => x.Id);
+                    table.PrimaryKey("PK_Shifts", x => x.Id);
                 });
         }
 
@@ -67,10 +68,10 @@ namespace STOlizza.Leto.Server.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Records");
+                name: "Answers");
 
             migrationBuilder.DropTable(
-                name: "Smenas");
+                name: "Shifts");
         }
     }
 }

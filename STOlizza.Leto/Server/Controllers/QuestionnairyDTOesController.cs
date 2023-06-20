@@ -23,24 +23,24 @@ namespace STOlizza.Leto.Server.Controllers
 
         // GET: api/QuestionnairyDTOes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<QuestionnairyDTO>>> GetRecords()
+        public async Task<ActionResult<IEnumerable<QuestionnairyDTO>>> GetAnswers()
         {
-          if (_context.Records == null)
+          if (_context.Answers == null)
           {
               return NotFound();
           }
-            return await _context.Records.ToListAsync();
+            return await _context.Answers.ToListAsync();
         }
 
         // GET: api/QuestionnairyDTOes/5
         [HttpGet("{id}")]
         public async Task<ActionResult<QuestionnairyDTO>> GetQuestionnairyDTO(int id)
         {
-          if (_context.Records == null)
+          if (_context.Answers == null)
           {
               return NotFound();
           }
-            var questionnairyDTO = await _context.Records.FindAsync(id);
+            var questionnairyDTO = await _context.Answers.FindAsync(id);
 
             if (questionnairyDTO == null)
             {
@@ -86,32 +86,31 @@ namespace STOlizza.Leto.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<QuestionnairyDTO>> PostQuestionnairyDTO(QuestionnairyDTO questionnairyDTO)
         {
-          if (_context.Records == null)
+          if (_context.Answers == null)
           {
-              return Problem("Entity set 'DatabaseContext.Records'  is null.");
+              return Problem("Entity set 'DatabaseContext.Answers'  is null.");
           }
-            _context.Records.Add(questionnairyDTO);
+            _context.Answers.Add(questionnairyDTO);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetQuestionnairyDTO", new { id = questionnairyDTO.Id }, questionnairyDTO);
         }
 
-
         // DELETE: api/QuestionnairyDTOes/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteQuestionnairyDTO(int id)
         {
-            if (_context.Records == null)
+            if (_context.Answers == null)
             {
                 return NotFound();
             }
-            var questionnairyDTO = await _context.Records.FindAsync(id);
+            var questionnairyDTO = await _context.Answers.FindAsync(id);
             if (questionnairyDTO == null)
             {
                 return NotFound();
             }
 
-            _context.Records.Remove(questionnairyDTO);
+            _context.Answers.Remove(questionnairyDTO);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -119,7 +118,7 @@ namespace STOlizza.Leto.Server.Controllers
 
         private bool QuestionnairyDTOExists(int id)
         {
-            return (_context.Records?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Answers?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

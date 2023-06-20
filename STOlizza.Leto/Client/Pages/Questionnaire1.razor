@@ -105,13 +105,6 @@
                             </MudText>
 
                             <MudDatePicker PickerClosed="DateChangeHandler"  Color="Color.Primary" @bind-Date="LQDTO.BirthDate" For="@(() => LQDTO.BirthDate)"  />
-
-                            @if (agealert)
-                            {
-                                <MudText Color="@Color.Error">
-                                    Для участия вам должно быть от 18 до 35 лет включительно
-                                </MudText>
-                            }
                         </MudItem>
 
                         <MudItem xs="12" lg="6">
@@ -202,6 +195,13 @@
                             </MudChipSet>*@
                         </MudItem>
 
+                        <MudItem xs="12" lg="6">
+                            <MudText Style="text-align: start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828;">
+                                Серия и номер паспорта*
+                            </MudText>
+
+                            <MudTextField @bind-Value="LQDTO.Passport" For="@(() => LQDTO.Passport)" T="string" Placeholder="0000 000000" HelperText="Укажи серию и номер через пробел" />
+                        </MudItem>
                     </MudGrid>
                     
 
@@ -340,18 +340,8 @@
 
     private void Submit(EditContext context)
     {
-        Console.WriteLine(LQDTO.BirthDate.ToString());
 
         var result = context.Validate();
-
-        //if (selectedSexChip is null)
-        //{
-        //    SexAlert = true;
-        //}
-        //else
-        //{
-        //    SexAlert = false;
-        //}
 
         if (string.IsNullOrEmpty(LQDTO.Sex))
         {
@@ -360,15 +350,6 @@
         else
         {
             SexAlert = false;
-        }
-
-        if (LQDTO.BirthDate is null)
-        {
-            agealert = true;
-        }
-        else
-        {
-            agealert = false;
         }
 
         if (BrowserImage is null && LQDTO.QImage.Count == 0)
@@ -382,15 +363,6 @@
             Nigger.NavigateTo("/questionnaire_part_2");
         }
     }
-
-
-    //MudChip selectedSexChip;
-
-    //public void SexChipClickHandler()
-    //{
-    //    LQDTO.IsMale = Convert.ToBoolean(selectedSexChip.Text);
-    //    SexAlert = false;
-    //}
 
     public void SexValueChanged()
     {
