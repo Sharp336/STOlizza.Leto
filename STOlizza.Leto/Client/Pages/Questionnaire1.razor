@@ -197,10 +197,10 @@
 
                         <MudItem xs="12" lg="6">
                             <MudText Style="text-align: start; font-family: 'Unbounded'; font-style: normal; font-weight: 400; font-size: 18px; line-height: 130%; color: #282828;">
-                                Серия и номер паспорта*
+                                Серия и номер российского паспорта*
                             </MudText>
 
-                            <MudTextField @bind-Value="LQDTO.Passport" For="@(() => LQDTO.Passport)" T="string" Placeholder="0000 000000" HelperText="Укажи серию и номер через пробел" />
+                            <MudTextField @bind-Value="LQDTO.Passport" For="@(() => LQDTO.Passport)" T="string" Placeholder="0000 000000" HelperText="Укажи серию и номер паспорта через пробел (участие могут принять только граждане Российской Федерации)" />
                         </MudItem>
                     </MudGrid>
                     
