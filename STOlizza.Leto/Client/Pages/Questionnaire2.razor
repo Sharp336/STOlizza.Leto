@@ -143,7 +143,6 @@
 
     protected override void OnParametersSet()
     {
-        Console.WriteLine(QService.GetStep());
         LQDTO = QService.Get();
         StateHasChanged();
 
@@ -169,7 +168,6 @@
 
     public void Submit(EditContext context)
     {
-        Console.WriteLine(LQDTO.KnowledgeSource);
         var result = context.Validate();
         if (string.IsNullOrEmpty(LQDTO.KnowledgeSource))
         {
