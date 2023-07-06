@@ -86,7 +86,7 @@
                                         Инструкция «Как загрузить файл на Яндекс.Диск и получить ссылку?»
                                     </MudLink>
 
-                                    <MudTextField Class="mx-4 my-3 m-lg-0" @bind-Value="LQDTO.VideoPath" T="string" Variant="Variant.Text" Placeholder="" Style="background-color: #EFFBFF; margin: 1vw" />
+                                    <MudTextField Class="mx-4 my-3 m-lg-0" @bind-Value="LQDTO.VideoPath" T="string" Variant="Variant.Text" Placeholder="https://disk.yandex.ru/i/KIT3AipnanuzVA" Style="background-color: #EFFBFF; margin: 1vw" />
                                     <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
                                         <div style="visibility:hidden; height: 1px"/>
                                     </MudHidden>
@@ -226,15 +226,22 @@
 
     public async Task Submit()
     {
-        if (Regex.IsMatch(LQDTO.VideoPath, @"^(https?:\/\/)"))
+        if (!string.IsNullOrWhiteSpace(LQDTO.VideoPath))
         {
             QService.SetVideo(LQDTO.VideoPath);
             if (isAgreed)
             {
                 _processing = true;
-                await QService.SendQuestionnarry();
+                var isSuccess = await QService.SendQuestionnarry(LQDTO);
                 _processing = false;
-                Nigger.NavigateTo("/success");
+                if (isSuccess)
+                {
+                    Nigger.NavigateTo("/success");
+                }
+                else
+                {
+                    Alert = "Не удалось отправить заявку, если это ошибка не пропадёт в ближайшее время - свяжитесь с нами";
+                }
             }
             else Alert = "Необходимо согласиться с политикой конфиденциальности и условиями конкурсного отбора";
         }
